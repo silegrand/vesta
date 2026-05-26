@@ -25,8 +25,8 @@
   --fb:'DM Sans',system-ui,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--fb);color:var(--text);background:var(--white);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--fb);color:var(--text);background:var(--white);line-height:1.7;-webkit-font-smoothing:antialiased;}
 img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-style:none}address{font-style:normal}
 .container{width:100%;max-width:1200px;margin:0 auto;padding:0 2rem}
 .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.75rem;border-radius:var(--rsm);font-family:var(--fb);font-size:.95rem;font-weight:600;cursor:pointer;border:2px solid transparent;transition:var(--tr);white-space:nowrap}
@@ -120,7 +120,7 @@ img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-st
 </style>
 </head>
 <body>
-<div id="vesta-header" role="banner"></div>
+<div id="vesta-header"></div>
 
 <div class="breadcrumb">
   <div class="container bc-inner">
@@ -150,7 +150,7 @@ img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-st
     <span class="stag reveal">The Challenge</span>
     <h2 class="sec-h2 reveal" id="chal-title">Why Generic CCTV Installations Fail Enterprise Clients</h2>
     <p class="sec-intro reveal">Camera placement is only part of the challenge. Storage capacity, network load, remote access security and data retention compliance are equally critical — and rarely addressed properly by generic installers.</p>
-    <div class="chal-grid"><div class="chal-card reveal rd1"><div class="chal-icon"><i class="fa-solid fa-camera-slash" aria-hidden="true"></i></div><h3>Wrong Camera for the Location</h3><p>A camera specified without a site survey is a camera that will underperform. Wide dynamic range, focal length, low-light capability and vandal resistance must all be matched to the specific environment — not chosen from a catalogue.</p></div><div class="chal-card reveal rd2"><div class="chal-icon"><i class="fa-solid fa-database" aria-hidden="true"></i></div><h3>Storage and Retention Failures</h3><p>Insufficient NVR storage, incorrect retention periods and no audit trail for access are the most common compliance failures we encounter when inheriting systems from other installers. All are entirely preventable.</p></div><div class="chal-card reveal rd3"><div class="chal-icon"><i class="fa-solid fa-globe" aria-hidden="true"></i></div><h3>Insecure Remote Access</h3><p>Default credentials on NVRs exposed directly to the internet is the norm, not the exception, in poorly specified systems. Enterprise remote access requires VPN, certificate-based authentication and regular security audit.</p></div><div class="chal-card reveal rd1"><div class="chal-icon"><i class="fa-solid fa-plug-circle-exclamation" aria-hidden="true"></i></div><h3>Network Impact Ignored</h3><p>4K cameras generate substantial data — unplanned deployments saturate networks, degrade performance and cause recording gaps. Proper network design is inseparable from camera specification.</p></div></div>
+    <div class="chal-grid"><div class="chal-card reveal rd1"><div class="chal-icon"><i class="fa-solid fa-camera" aria-hidden="true"></i></div><h3>Wrong Camera for the Location</h3><p>A camera specified without a site survey is a camera that will underperform. Wide dynamic range, focal length, low-light capability and vandal resistance must all be matched to the specific environment — not chosen from a catalogue.</p></div><div class="chal-card reveal rd2"><div class="chal-icon"><i class="fa-solid fa-database" aria-hidden="true"></i></div><h3>Storage and Retention Failures</h3><p>Insufficient NVR storage, incorrect retention periods and no audit trail for access are the most common compliance failures we encounter when inheriting systems from other installers. All are entirely preventable.</p></div><div class="chal-card reveal rd3"><div class="chal-icon"><i class="fa-solid fa-globe" aria-hidden="true"></i></div><h3>Insecure Remote Access</h3><p>Default credentials on NVRs exposed directly to the internet is the norm, not the exception, in poorly specified systems. Enterprise remote access requires VPN, certificate-based authentication and regular security audit.</p></div><div class="chal-card reveal rd1"><div class="chal-icon"><i class="fa-solid fa-plug" aria-hidden="true"></i></div><h3>Network Impact Ignored</h3><p>4K cameras generate substantial data — unplanned deployments saturate networks, degrade performance and cause recording gaps. Proper network design is inseparable from camera specification.</p></div></div>
   </div>
 </section>
 
