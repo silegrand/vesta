@@ -25,7 +25,7 @@
   --nh:68px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{overflow-x:hidden;scroll-behavior:smooth}
 body{font-family:var(--fb);color:var(--text);background:var(--white);-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh;display:flex;flex-direction:column}
 img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-style:none}button{cursor:pointer;font-family:var(--fb)}
 
@@ -34,22 +34,22 @@ nav{height:var(--nh);background:rgba(255,255,255,.97);backdrop-filter:blur(14px)
 nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.07)}
 .nav-i{max-width:1400px;margin:0 auto;padding:0 1.5rem;height:100%;display:flex;align-items:center;gap:1.5rem}
 .nav-logo img{height:40px;width:auto;max-width:160px;object-fit:contain}
-.nav-links{display:flex;align-items:center;gap:.2rem;flex:1;justify-content:center;list-style:none}
-.nav-link{padding:.45rem .8rem;font-size:.88rem;font-weight:500;color:var(--steel);border-radius:6px;transition:color .2s,background .2s}
-.nav-link:hover{color:var(--navy);background:var(--mist)}
-.nav-dropdown{position:relative}
-.nav-dropdown>a,.nav-dropdown>button{display:flex;align-items:center;gap:.3rem;cursor:pointer;padding:.45rem .8rem;font-size:.88rem;font-weight:500;color:var(--steel);border-radius:6px;background:none;border:none;font-family:var(--fb);transition:color .2s,background .2s}
-.nav-dropdown:hover>a,.nav-dropdown:hover>button{color:var(--navy);background:var(--mist)}
-.nav-dropdown>a svg,.nav-dropdown>button svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
-.nav-dropdown:hover>a svg,.nav-dropdown:hover>button svg{transform:rotate(180deg)}
-.drop-menu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(6px);background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,.1);padding:.5rem;min-width:210px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s,transform .18s;z-index:100}
-.nav-dropdown:hover .drop-menu{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0)}
-.drop-menu::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:11px;height:11px;background:#fff;border-left:1px solid var(--border);border-top:1px solid var(--border);rotate:45deg}
-.drop-item{display:flex;align-items:center;gap:.7rem;padding:.6rem .85rem;border-radius:6px;font-size:.84rem;font-weight:500;color:var(--text);transition:background .15s,color .15s}
-.drop-item:hover{background:var(--mist);color:var(--navy)}
-.drop-item.active{color:var(--navy);font-weight:600}
-.drop-item svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.75;flex-shrink:0}
-.nav-cta{padding:.5rem 1.2rem;background:var(--navy);color:#fff;font-size:.86rem;font-weight:600;border-radius:6px;transition:background .2s,transform .2s;white-space:nowrap;flex-shrink:0}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .nav-cta:hover{background:var(--accent);transform:translateY(-1px)}
 
 /* HERO BAR */
@@ -99,7 +99,7 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.07)}
 .eq-tip::before{content:'';position:absolute;right:100%;top:50%;transform:translateY(-50%);border:4px solid transparent;border-right-color:var(--navy-deeper)}
 
 /* CANVAS */
-.canvas-wrap{flex:1;position:relative;overflow:hidden;background:#E2E4EE}
+.canvas-wrap{flex:1;position:relative;overflow:hidden;background:#E2E4EE;min-height:400px}
 .canvas-wrap.drag-over{background:#D6DAF0}
 canvas{display:block;width:100%;height:100%;touch-action:none}
 .upload-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
@@ -149,7 +149,7 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 .sp-note{font-size:.68rem;color:var(--muted);line-height:1.5}
 
 /* EXPORT BAR */
-.export-bar{background:var(--navy-deeper);padding:0 1.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;flex-shrink:0}
+.export-bar{background:var(--navy-deeper);padding:0 1.5rem;height:52px;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;flex-shrink:0}
 .export-bar-text{font-size:.8rem;color:rgba(255,255,255,.4);max-width:40ch;line-height:1.4}
 .export-bar-text strong{color:rgba(255,255,255,.72)}
 .export-btns{display:flex;align-items:center;gap:.6rem}
@@ -168,7 +168,7 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
 <body>
 
 <!-- NAV -->
-<div id="vesta-header" role="banner"></div>
+<div id="vesta-header"></div>
 
 <!-- HERO BAR -->
 <div class="hero-bar">
@@ -325,7 +325,7 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
       <div class="sp-empty" id="spEmpty">No nodes placed yet. Upload a plan and start building your wireless network.</div>
     </div>
     <div class="sp-foot">
-      <p class="sp-note">Place nodes in pairs — each pair auto-connects as a PTP link. Click a node or link to hover-highlight, or use Delete tool to remove.</p>
+      <p class="sp-note">Click to place nodes and build link chains. Each click extends the chain from the last node. Click outside the plan to start fresh.</p>
     </div>
   </div>
 
@@ -409,7 +409,7 @@ function setTool(tool) {
   canvas.style.cursor = cursors[tool] || 'default';
   const hints = {
     pan:    'Drag to pan the view',
-    node:   pendingNode ? 'Click to place the 2nd node and complete the link' : 'Click to place the 1st PTP node',
+    node:   pendingNode ? 'Click anywhere to place next node and extend the link chain — click outside the plan to reset' : 'Click to place the 1st node',
     delete: 'Click a node or link to remove it'
   };
   showHint(hints[tool]);
@@ -712,7 +712,14 @@ function onWheel(e) {
 function handleClick(p) {
   if (!planImage) { showHint('Please upload a plan first'); return; }
   const plan = sToP(p.x, p.y);
-  if (plan.x<0||plan.y<0||plan.x>planImage.naturalWidth||plan.y>planImage.naturalHeight) return;
+  if (plan.x<0||plan.y<0||plan.x>planImage.naturalWidth||plan.y>planImage.naturalHeight) {
+    if (pendingNode) {
+      pendingNode = null;
+      showHint('Chain reset \u2014 click on the plan to start a new chain');
+      draw();
+    }
+    return;
+  }
 
   if (activeTool==='delete') {
     const hn = getNodeAt(p.x,p.y);
@@ -724,29 +731,29 @@ function handleClick(p) {
 
   if (activeTool==='node') {
     if (!pendingNode) {
-      // Place first node
+      // Place first node — becomes the chain anchor
       nodeSeq++;
       const n = { id:Date.now(), x:plan.x, y:plan.y, equip:activeEquip, label:'N'+nodeSeq, seq:nodeSeq };
       nodes.push(n);
       pendingNode = n;
-      showHint('Node placed \u2014 click to place the 2nd node and complete the PTP link');
+      showHint('N'+nodeSeq+' placed \u2014 click anywhere to place next node and extend the chain');
       updateUI(); draw();
     } else {
       // Check not clicking same spot
       const sp = pToS(pendingNode.x, pendingNode.y);
       if (Math.hypot(p.x-sp.x, p.y-sp.y) < 12) {
-        showHint('Place the 2nd node somewhere else on the plan');
+        showHint('Place the next node somewhere else');
         return;
       }
-      // Place second node and auto-link
+      // Place next node and link from chain anchor — new node becomes the new chain anchor
       nodeSeq++;
       const n2 = { id:Date.now()+1, x:plan.x, y:plan.y, equip:activeEquip, label:'N'+nodeSeq, seq:nodeSeq };
       nodes.push(n2);
       linkSeq++;
       const lk = { id:Date.now()+2, a:pendingNode, b:n2, label:'L'+linkSeq, seq:linkSeq };
       links.push(lk);
-      pendingNode = null;
-      showHint('Link L'+linkSeq+' created \u2014 click to start a new PTP pair');
+      pendingNode = n2;  // chain continues from this node
+      showHint('L'+linkSeq+' added \u2014 N'+nodeSeq+' is now the active node. Click to extend or click outside to reset');
       updateUI(); draw();
     }
   }
