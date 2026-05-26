@@ -47,7 +47,7 @@ img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-st
 .site-header.scrolled{box-shadow:var(--shadow-md)}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 2rem;height:72px;display:flex;align-items:center;justify-content:space-between;gap:2rem}
 .nav-logo img{height:40px;width:auto;object-fit:contain}
-.nav-links{display:flex;align-items:center;gap:.25rem;flex:1;justify-content:center}
+.nav-links{display:flex;align-items:center;gap:.2rem;flex:1;justify-content:center}
 .nav-link{padding:.5rem .85rem;font-size:.9rem;font-weight:500;color:var(--steel);border-radius:var(--rsm);transition:color var(--tr),background var(--tr)}
 .nav-link:hover{color:var(--navy);background:var(--mist)}
 .nav-cta{margin-left:0;padding:.55rem 1.25rem;background:var(--navy);color:var(--white);border-radius:var(--rsm);font-size:.9rem;font-weight:600;transition:background var(--tr),transform var(--tr)}
@@ -260,23 +260,24 @@ img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-st
       <span class="burger-line"></span><span class="burger-line"></span><span class="burger-line"></span>
     </button>
     <ul class="nav-links" id="navMenu" role="list">
-      <li><a href="#services" class="nav-link">Services</a></li>
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#director" class="nav-link">Leadership</a></li>
       <li class="nav-dropdown">
-        <button class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-          Tools
-          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
+        <button class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">Services<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
         <div class="drop-menu" role="menu">
-          <a href="cctv-site-tool.html" class="drop-item" role="menuitem">
-            <i class="fa-solid fa-video" aria-hidden="true"></i>CCTV Site Tool
-          </a>
-          <a href="wireless-planner.html" class="drop-item" role="menuitem">
-            <i class="fa-solid fa-wifi" aria-hidden="true"></i>Wireless Planner
-          </a>
+          <a href="networks.html" class="drop-item" role="menuitem"><i class="fa-solid fa-network-wired" aria-hidden="true"></i>Wireless &amp; Fixed Networks</a>
+          <a href="cctv.html" class="drop-item" role="menuitem"><i class="fa-solid fa-video" aria-hidden="true"></i>CCTV Systems</a>
+          <a href="ai-analytics.html" class="drop-item" role="menuitem"><i class="fa-solid fa-brain" aria-hidden="true"></i>AI &amp; Analytics</a>
+          <a href="monitoring.html" class="drop-item" role="menuitem"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i>24/7 Monitoring</a>
         </div>
       </li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">Tools<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="drop-menu" role="menu">
+          <a href="cctv-site-tool.html" class="drop-item" role="menuitem"><i class="fa-solid fa-video" aria-hidden="true"></i>CCTV Site Tool</a>
+          <a href="wireless-planner.html" class="drop-item" role="menuitem"><i class="fa-solid fa-wifi" aria-hidden="true"></i>Wireless Planner</a>
+        </div>
+      </li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#director" class="nav-link">Leadership</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
       <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
     </ul>
@@ -349,7 +350,7 @@ img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-st
           <li><i class="fa-solid fa-check" aria-hidden="true"></i>Structured cabling &amp; fibre</li>
           <li><i class="fa-solid fa-check" aria-hidden="true"></i>Ongoing managed support</li>
         </ul>
-        <a href="#contact" class="svc-link">Enquire <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        <a href="networks.html" class="svc-link">Explore Networks <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
       </article>
       <article class="svc-card svc-card--feat reveal rd2" aria-labelledby="s2">
         <div class="svc-accent" aria-hidden="true"></div>
@@ -363,7 +364,7 @@ img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-st
           <li><i class="fa-solid fa-check" aria-hidden="true"></i>Secure guest &amp; staff segmentation</li>
           <li><i class="fa-solid fa-check" aria-hidden="true"></i>Residential high-performance installs</li>
         </ul>
-        <a href="#contact" class="svc-link">Enquire <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        <a href="cctv.html" class="svc-link">Explore CCTV <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
       </article>
       <article class="svc-card reveal rd3" aria-labelledby="s3">
         <div class="svc-accent" aria-hidden="true"></div>
@@ -376,7 +377,7 @@ img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-st
           <li><i class="fa-solid fa-check" aria-hidden="true"></i>Secure local &amp; cloud storage</li>
           <li><i class="fa-solid fa-check" aria-hidden="true"></i>Corporate multi-site deployment</li>
         </ul>
-        <a href="#contact" class="svc-link">Enquire <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        <a href="monitoring.html" class="svc-link">Explore Monitoring <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
       </article>
     </div>
   </div>
