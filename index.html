@@ -82,7 +82,7 @@ img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-st
 .stitle--lt{color:var(--white)}
 .ssub{font-size:1.05rem;color:var(--muted);max-width:580px;line-height:1.75}
 .shdr{text-align:center;margin-bottom:4rem}.shdr .ssub{margin:0 auto}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem}@media(max-width:1200px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
 .svc-card{position:relative;background:var(--white);border:1px solid var(--border);border-radius:var(--rlg);padding:2.5rem 2rem;display:flex;flex-direction:column;overflow:hidden;transition:border-color var(--tr),transform var(--tr),box-shadow var(--tr)}
 .svc-card:hover{border-color:var(--navy);transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .svc-card--feat{border-color:var(--navy);background:var(--navy-deeper)}
@@ -172,7 +172,7 @@ img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-st
 .fnote{font-size:.78rem;color:var(--muted);text-align:center}
 /* RESPONSIVE */
 @media(max-width:1024px){
-  .svc-grid{grid-template-columns:1fr;max-width:540px;margin:0 auto}
+  .svc-grid{grid-template-columns:1fr}
   .about-inner{grid-template-columns:1fr;gap:3rem}
   .dir-card{grid-template-columns:1fr}
   .dir-photo{max-height:320px;aspect-ratio:unset}
@@ -194,6 +194,23 @@ img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-st
   .scroll-hint{display:none}
 }
 @media(max-width:480px){.container{padding:0 1.25rem}}
+
+/* SECTORS */
+.sectors{padding:6rem 0;background:var(--navy-deeper);position:relative}
+.sectors::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:72px 72px;pointer-events:none}
+.sectors .container{position:relative;z-index:2}
+.sectors .stag{color:rgba(255,255,255,.55)}
+.sectors .stitle{color:var(--white)}
+.sectors .ssub{color:rgba(255,255,255,.52)}
+.sector-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.sector-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:var(--rlg);padding:2rem;transition:border-color var(--tr),background var(--tr)}
+.sector-card:hover{border-color:rgba(232,116,12,.4);background:rgba(255,255,255,.08)}
+.sector-icon{width:48px;height:48px;background:rgba(255,255,255,.08);border-radius:var(--rmd);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.1rem;margin-bottom:1.1rem;transition:background var(--tr)}
+.sector-card:hover .sector-icon{background:rgba(232,116,12,.2)}
+.sector-title{font-family:var(--fd);font-size:1.15rem;color:var(--white);margin-bottom:.65rem;line-height:1.2}
+.sector-desc{font-size:.875rem;color:rgba(255,255,255,.52);line-height:1.75}
+@media(max-width:1024px){.sector-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.sector-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -248,10 +265,11 @@ img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-st
   <div class="container">
     <div class="shdr">
       <span class="stag">What We Do</span>
-      <h2 class="stitle" id="services-title">Three Disciplines.<br/>One Partner.</h2>
-      <p class="ssub">From the data centre to the desktop, and from the boardroom to the living room, Vesta IT delivers connected, secure, and reliable infrastructure at every scale.</p>
+      <h2 class="stitle" id="services-title">Six Disciplines.<br/>One Partner.</h2>
+      <p class="ssub">From data networks and wireless infrastructure to CCTV, fire detection, access control and ongoing maintenance — Vesta IT delivers six complete disciplines under one roof, at every scale.</p>
     </div>
     <div class="svc-grid">
+      <!-- 1: Data & Network -->
       <article class="svc-card reveal rd1" aria-labelledby="s1">
         <div class="svc-accent" aria-hidden="true"></div>
         <div class="svc-icon" aria-hidden="true"><i class="fa-solid fa-server"></i></div>
@@ -265,24 +283,12 @@ img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-st
         </ul>
         <a href="networks.html" class="svc-link">Explore Networks <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
       </article>
+      <!-- 2: CCTV — Most Requested (was card 3, now promoted) -->
       <article class="svc-card svc-card--feat reveal rd2" aria-labelledby="s2">
         <div class="svc-accent" aria-hidden="true"></div>
         <div class="svc-badge">Most Requested</div>
-        <div class="svc-icon" aria-hidden="true"><i class="fa-solid fa-wifi"></i></div>
-        <h3 class="svc-title" id="s2">Corporate &amp; Residential WiFi</h3>
-        <p class="svc-desc">Dead zones and congestion are not acceptable in any environment. We design and deploy enterprise-grade wireless networks, from multi-floor offices to large residential properties, ensuring seamless, secure connectivity.</p>
-        <ul class="svc-feats">
-          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Site survey &amp; RF planning</li>
-          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Enterprise access point deployment</li>
-          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Secure guest &amp; staff segmentation</li>
-          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Residential high-performance installs</li>
-        </ul>
-        <a href="networks.html" class="svc-link">Explore WiFi <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-      </article>
-      <article class="svc-card reveal rd3" aria-labelledby="s3">
-        <div class="svc-accent" aria-hidden="true"></div>
         <div class="svc-icon" aria-hidden="true"><i class="fa-solid fa-camera"></i></div>
-        <h3 class="svc-title" id="s3">CCTV Solutions</h3>
+        <h3 class="svc-title" id="s2">CCTV Solutions</h3>
         <p class="svc-desc">Integrated CCTV systems with intelligent monitoring, remote access and secure storage, scaled for multi-site corporate estates, single offices, or residential installations that demand real peace of mind without compromise.</p>
         <ul class="svc-feats">
           <li><i class="fa-solid fa-check" aria-hidden="true"></i>HD &amp; 4K IP camera systems</li>
@@ -292,6 +298,105 @@ img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-st
         </ul>
         <a href="cctv.html" class="svc-link">Explore CCTV <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
       </article>
+      <!-- 3: Corporate & Residential WiFi -->
+      <article class="svc-card reveal rd3" aria-labelledby="s3">
+        <div class="svc-accent" aria-hidden="true"></div>
+        <div class="svc-icon" aria-hidden="true"><i class="fa-solid fa-wifi"></i></div>
+        <h3 class="svc-title" id="s3">Corporate &amp; Residential WiFi</h3>
+        <p class="svc-desc">Dead zones and congestion are not acceptable in any environment. We design and deploy enterprise-grade wireless networks, from multi-floor offices to large residential properties, ensuring seamless, secure connectivity.</p>
+        <ul class="svc-feats">
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Site survey &amp; RF planning</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Enterprise access point deployment</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Secure guest &amp; staff segmentation</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Residential high-performance installs</li>
+        </ul>
+        <a href="networks.html" class="svc-link">Explore WiFi <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      </article>
+      <!-- 4: Fire Detection & Prevention -->
+      <article class="svc-card reveal rd1" aria-labelledby="s4">
+        <div class="svc-accent" aria-hidden="true"></div>
+        <div class="svc-icon" aria-hidden="true"><i class="fa-solid fa-fire-extinguisher"></i></div>
+        <h3 class="svc-title" id="s4">Fire Detection &amp; Prevention</h3>
+        <p class="svc-desc">BS 5839 compliant addressable fire detection and alarm systems, suppression integration and ARC monitoring — designed around your specific site risk, not a standard catalogue. Life-safety infrastructure built to perform when it matters.</p>
+        <ul class="svc-feats">
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Addressable fire detection &amp; alarm</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>BS 5839-1 compliant design &amp; installation</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Clean agent suppression systems</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>24/7 ARC monitoring connection</li>
+        </ul>
+        <a href="fire-detection.html" class="svc-link">Explore Fire Systems <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      </article>
+      <!-- 5: Maintenance & Support -->
+      <article class="svc-card reveal rd2" aria-labelledby="s5">
+        <div class="svc-accent" aria-hidden="true"></div>
+        <div class="svc-icon" aria-hidden="true"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+        <h3 class="svc-title" id="s5">Maintenance &amp; Support</h3>
+        <p class="svc-desc">Planned preventative maintenance and priority response support for CCTV, access control and wireless networks — all under a single contract with the same engineers who installed your systems.</p>
+        <ul class="svc-feats">
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>CCTV system PPM &amp; servicing</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Access control maintenance</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Wireless network health checks</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Priority fault response SLA</li>
+        </ul>
+        <a href="maintenance.html" class="svc-link">Explore Maintenance <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      </article>
+      <!-- 6: AI & Analytics -->
+      <article class="svc-card reveal rd3" aria-labelledby="s6">
+        <div class="svc-accent" aria-hidden="true"></div>
+        <div class="svc-icon" aria-hidden="true"><i class="fa-solid fa-brain"></i></div>
+        <h3 class="svc-title" id="s6">AI &amp; Analytics</h3>
+        <p class="svc-desc">Transform passive CCTV recording into active security intelligence. Virtual tripwires, forensic video search, ANPR, people counting and behaviour detection — all integrated with your existing camera infrastructure.</p>
+        <ul class="svc-feats">
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Virtual tripwires &amp; zone intrusion</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Forensic video search in seconds</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>ANPR &amp; vehicle detection</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>People counting &amp; occupancy</li>
+        </ul>
+        <a href="ai-analytics.html" class="svc-link">Explore AI Analytics <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<section class="sectors" id="sectors" aria-labelledby="sectors-title">
+  <div class="container">
+    <div class="shdr">
+      <span class="stag">Who We Serve</span>
+      <h2 class="stitle" id="sectors-title">Built for the Sectors<br/>That Cannot Afford Downtime</h2>
+      <p class="ssub">Vesta IT brings enterprise-grade security and network infrastructure to the industries where reliable, compliant systems are not a preference — they are an operational requirement.</p>
+    </div>
+    <div class="sector-grid">
+      <div class="sector-card reveal rd1">
+        <div class="sector-icon"><i class="fa-solid fa-ship" aria-hidden="true"></i></div>
+        <h3 class="sector-title">Transport &amp; Shipping</h3>
+        <p class="sector-desc">Port operations, logistics hubs and transport depots demand perimeter CCTV, ANPR, access control and resilient connectivity across large, complex estates. We understand the operational pressures — and the regulatory requirements that come with critical national infrastructure.</p>
+      </div>
+      <div class="sector-card reveal rd2">
+        <div class="sector-icon"><i class="fa-solid fa-recycle" aria-hidden="true"></i></div>
+        <h3 class="sector-title">Waste Management &amp; Energy</h3>
+        <p class="sector-desc">Waste processing facilities and energy centres require robust CCTV across wide outdoor areas, vehicle access control and fire detection in environments where standard equipment cannot survive. We specify systems designed for the conditions, not against them.</p>
+      </div>
+      <div class="sector-card reveal rd3">
+        <div class="sector-icon"><i class="fa-solid fa-building-columns" aria-hidden="true"></i></div>
+        <h3 class="sector-title">Public Sector &amp; Schools</h3>
+        <p class="sector-desc">Local authorities and educational establishments require compliant CCTV, controlled access and fire detection that meets public sector procurement standards and safeguarding obligations. We deliver systems that satisfy both the technology requirement and the governance framework around it.</p>
+      </div>
+      <div class="sector-card reveal rd1">
+        <div class="sector-icon"><i class="fa-solid fa-futbol" aria-hidden="true"></i></div>
+        <h3 class="sector-title">Sports Stadiums</h3>
+        <p class="sector-desc">High-density crowd environments, high-value assets and strict licensing requirements make sports venues one of the most technically demanding CCTV and access control challenges. We design systems that meet sports ground licencing conditions and deliver evidential-quality footage when it is needed.</p>
+      </div>
+      <div class="sector-card reveal rd2">
+        <div class="sector-icon"><i class="fa-solid fa-hard-hat" aria-hidden="true"></i></div>
+        <h3 class="sector-title">Construction</h3>
+        <p class="sector-desc">Temporary and permanent sites, off-grid locations and rapidly changing site layouts demand solar-powered CCTV, wireless connectivity and access control that moves with the project. We have deployed on sites with no mains power, no fixed infrastructure and no margin for security failure.</p>
+      </div>
+      <div class="sector-card reveal rd3">
+        <div class="sector-icon"><i class="fa-solid fa-landmark" aria-hidden="true"></i></div>
+        <h3 class="sector-title">Finance Centres</h3>
+        <p class="sector-desc">Banks, insurance offices and financial services premises require layered physical security — controlled access, CCTV with compliant retention, and network infrastructure that meets FCA and PCI-DSS expectations. We understand the compliance environment, not just the technology.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -397,6 +502,8 @@ img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-st
             <option value="" disabled selected>Select a service&hellip;</option>
             <option value="networks">Wireless &amp; Fixed Networks</option>
             <option value="cctv">CCTV Systems</option>
+            <option value="fire">Fire Detection &amp; Prevention</option>
+            <option value="maintenance">Maintenance &amp; Support</option>
             <option value="ai">AI &amp; Analytics</option>
             <option value="monitoring">24/7 Monitoring</option>
             <option value="general">General Enquiry</option>
