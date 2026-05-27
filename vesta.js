@@ -1,635 +1,431 @@
-/*!
- * vesta.js — Shared nav & footer for Vesta IT Services Ltd
- * Modelled on the proven Fyrfly pattern.
- * Edit this file only to update nav/footer across every page.
- */
-(function () {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Vesta IT Services Ltd — Enterprise-grade data, network, WiFi and CCTV solutions for corporate and residential clients across the UK."/>
+<title>Vesta IT Services Ltd | Enterprise Network &amp; IT Infrastructure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
+  <script src="vesta.js" defer></script>
+<style>
+:root{
+  --navy:#1E2163;--navy-dark:#141548;--navy-deeper:#0D0E30;
+  --accent:#E8740C;--accent-lt:#F4974A;
+  --steel:#4A5568;--mist:#F4F6FB;--white:#fff;--border:#DDE2EE;
+  --text:#2D3748;--muted:#64748B;
+  --rsm:6px;--rmd:12px;--rlg:20px;
+  --shadow-sm:0 1px 4px rgba(30,33,99,.08);
+  --shadow-md:0 4px 20px rgba(30,33,99,.12);
+  --shadow-lg:0 12px 40px rgba(30,33,99,.16);
+  --tr:.25s cubic-bezier(.4,0,.2,1);
+  --fd:'DM Sans',system-ui,sans-serif;
+  --fb:'DM Sans',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--fb);color:var(--text);background:var(--white);line-height:1.7;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-style:none}address{font-style:normal}
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 2rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.75rem;border-radius:var(--rsm);font-family:var(--fb);font-size:.95rem;font-weight:600;cursor:pointer;border:2px solid transparent;transition:var(--tr);white-space:nowrap}
+.btn i{transition:transform var(--tr)}.btn:hover i{transform:translateX(3px)}
+.btn--primary{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.btn--primary:hover{background:var(--navy-dark);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn--accent{background:var(--accent);color:var(--white);border-color:var(--accent)}
+.btn--accent:hover{background:var(--accent-lt);transform:translateY(-1px);box-shadow:0 6px 24px rgba(232,116,12,.35)}
+.btn--ghost{background:transparent;color:var(--white);border-color:rgba(255,255,255,.4)}
+.btn--ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}
+.btn--large{padding:1.1rem 2.25rem;font-size:1.05rem}.btn--full{width:100%;justify-content:center}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}
 
-  /* ── CONFIG ─────────────────────────────────────────────── */
-  var BLUE_LOGO = 'logo-blue.webp';
-  var WHITE_LOGO = 'logo-white.webp';
-  var EMAIL   = 'info@vestaitservices.co.uk';
-  var PHONE   = '+44 (0)1634 000 000';
-  var ADDRESS = 'King Arthurs Court Maidstone Road, Charing, Ashford, Kent, England, TN27 0JS';
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:9rem 0 5rem;overflow:hidden;background:var(--navy-deeper)}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px)}
+.hero-orb--1{width:600px;height:600px;top:-200px;left:-150px;background:radial-gradient(circle,rgba(30,33,99,.8) 0%,transparent 70%)}
+.hero-orb--2{width:500px;height:500px;bottom:-150px;right:-100px;background:radial-gradient(circle,rgba(232,116,12,.15) 0%,transparent 70%)}
+.hero-circuit{position:absolute;inset:0;width:100%;height:100%}
+.hero-content{position:relative;z-index:2;max-width:780px}
+.hero-badge{display:inline-flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);padding:.45rem 1rem;border-radius:100px;font-size:.8rem;font-weight:500;letter-spacing:.04em;margin-bottom:1.75rem;animation:fadeUp .7s ease both}
+.hero-badge-dot{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+.hero-headline{font-family:var(--fb);font-size:clamp(3rem,7vw,5.5rem);line-height:1.08;font-weight:700;color:var(--white);margin-bottom:1.5rem;animation:fadeUp .7s .15s ease both}
+.hero-headline em{color:var(--accent);font-style:normal;font-weight:700}
+.hero-sub{font-size:clamp(1rem,2vw,1.2rem);color:rgba(255,255,255,.72);max-width:560px;margin-bottom:2.25rem;line-height:1.75;animation:fadeUp .7s .25s ease both}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3.5rem;animation:fadeUp .7s .35s ease both}
+.hero-stats{display:flex;align-items:center;flex-wrap:wrap;animation:fadeUp .7s .45s ease both}
+.hero-stat{display:flex;flex-direction:column;padding:0 2rem 0 0}
+.hero-stat-number{font-family:var(--fd);font-size:2.4rem;font-weight:700;color:var(--white);line-height:1;margin-bottom:.3rem}
+.hero-stat-number sup{font-size:1.1rem;color:var(--accent)}
+.hero-stat-label{font-size:.78rem;color:rgba(255,255,255,.5);max-width:120px;line-height:1.4}
+.hero-stat-div{width:1px;height:48px;background:rgba(255,255,255,.15);margin:0 2rem 0 0;flex-shrink:0}
+.scroll-hint{position:absolute;bottom:2.5rem;left:2rem;display:flex;align-items:center;gap:.75rem;color:rgba(255,255,255,.35);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;z-index:2}
+.scroll-line{width:40px;height:1px;background:rgba(255,255,255,.25);position:relative;overflow:hidden}
+.scroll-line::after{content:'';position:absolute;left:-100%;top:0;width:100%;height:100%;background:var(--accent);animation:scrollAnim 1.8s ease infinite}
+@keyframes scrollAnim{to{left:100%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+/* TRUST BAR */
+.trust-bar{background:var(--navy);padding:1.25rem 0}
+.trust-inner{display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:.6rem;color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500;padding:.4rem 1.5rem}
+.trust-item i{color:var(--accent);font-size:1rem}
+.trust-div{width:1px;height:20px;background:rgba(255,255,255,.2);flex-shrink:0}
+/* SERVICES */
+.services{padding:7rem 0;background:var(--white)}
+.stag{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.9rem}
+.stitle{font-family:var(--fd);font-size:clamp(2rem,4vw,2.9rem);font-weight:700;line-height:1.15;color:var(--navy-deeper);margin-bottom:1.25rem}
+.stitle--lt{color:var(--white)}
+.ssub{font-size:1.05rem;color:var(--muted);max-width:580px;line-height:1.75}
+.shdr{text-align:center;margin-bottom:4rem}.shdr .ssub{margin:0 auto}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem}
+.svc-card{position:relative;background:var(--white);border:1px solid var(--border);border-radius:var(--rlg);padding:2.5rem 2rem;display:flex;flex-direction:column;overflow:hidden;transition:border-color var(--tr),transform var(--tr),box-shadow var(--tr)}
+.svc-card:hover{border-color:var(--navy);transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.svc-card--feat{border-color:var(--navy);background:var(--navy-deeper)}
+.svc-card--feat .svc-title{color:rgba(255,255,255,.95)}
+.svc-card--feat .svc-desc{color:rgba(255,255,255,.65)}
+.svc-card--feat .svc-feats li{color:rgba(255,255,255,.8)}
+.svc-card--feat .svc-feats li i{color:var(--accent)}
+.svc-card--feat .svc-link{color:var(--accent-lt)}
+.svc-card--feat:hover{border-color:var(--accent);box-shadow:0 12px 40px rgba(232,116,12,.2)}
+.svc-accent{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--navy),var(--accent));opacity:0;transition:opacity var(--tr)}
+.svc-card:hover .svc-accent{opacity:1}
+.svc-card--feat .svc-accent{background:linear-gradient(90deg,var(--accent),var(--accent-lt));opacity:1}
+.svc-badge{display:inline-flex;align-self:flex-start;background:var(--accent);color:var(--white);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .75rem;border-radius:100px;margin-bottom:1.25rem}
+.svc-icon{width:56px;height:56px;background:var(--mist);border-radius:var(--rmd);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--navy);margin-bottom:1.5rem;transition:background var(--tr),color var(--tr)}
+.svc-card--feat .svc-icon{background:rgba(255,255,255,.1);color:var(--accent)}
+.svc-card:hover .svc-icon{background:var(--navy);color:var(--white)}
+.svc-card--feat:hover .svc-icon{background:var(--accent);color:var(--white)}
+.svc-title{font-family:var(--fd);font-size:1.45rem;font-weight:700;color:var(--navy-deeper);margin-bottom:.85rem;line-height:1.2}
+.svc-desc{font-size:.92rem;color:var(--muted);line-height:1.75;margin-bottom:1.5rem;flex:1}
+.svc-feats{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.75rem}
+.svc-feats li{display:flex;align-items:center;gap:.6rem;font-size:.875rem;color:var(--text)}
+.svc-feats li i{color:var(--navy);font-size:.75rem;flex-shrink:0}
+.svc-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.9rem;font-weight:600;color:var(--navy);margin-top:auto;transition:gap var(--tr),color var(--tr)}
+.svc-link:hover{gap:.7rem;color:var(--accent)}
+/* ABOUT */
+.about{padding:7rem 0;background:var(--mist)}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-visual{display:flex;justify-content:center}
+.diag{display:flex;flex-direction:column;align-items:center}
+.dnode{display:flex;flex-direction:column;align-items:center;gap:.5rem;background:var(--white);border:1.5px solid var(--border);border-radius:var(--rmd);padding:1rem 1.25rem;font-size:.82rem;font-weight:600;color:var(--navy);text-align:center;min-width:90px;box-shadow:var(--shadow-sm);transition:border-color var(--tr)}
+.dnode:hover{border-color:var(--accent)}
+.dnode i{font-size:1.3rem;color:var(--navy)}
+.dnode--c{background:var(--navy);color:var(--white);border-color:var(--navy);padding:1.25rem 1.5rem;min-width:110px}
+.dnode--c i{color:var(--accent);font-size:1.5rem}
+.drow{display:flex;align-items:center}
+.ch{width:32px;height:1.5px;background:var(--border);flex-shrink:0}
+.cv{width:1.5px;height:24px;background:var(--border)}
+.dlabel{font-size:.72rem;color:var(--muted);text-align:center;margin-top:1.5rem;max-width:260px;line-height:1.5}
+.abt{color:var(--muted);font-size:.97rem;line-height:1.8;margin-bottom:1.1rem}
+/* DIRECTOR */
+.director{position:relative;padding:7rem 0;background:var(--navy-deeper);overflow:hidden}
+.dir-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:80px 80px}
+.dir-inner{position:relative;z-index:2}
+.dir-hdr{text-align:center;margin-bottom:4rem}
+.dir-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--rlg);padding:3.5rem;display:grid;grid-template-columns:280px 1fr;gap:4rem;backdrop-filter:blur(10px)}
+.dir-photo{border-radius:var(--rmd);overflow:hidden;aspect-ratio:3/4;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
+.dir-photo img{width:100%;height:100%;object-fit:cover}
+.dir-creds{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+.cred{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:var(--rsm);padding:1rem;display:flex;flex-direction:column;gap:.3rem}
+.cred-n{font-family:var(--fd);font-size:1.9rem;font-weight:700;color:var(--accent);line-height:1}
+.cred-l{font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.4}
+.dir-name{font-family:var(--fd);font-size:2rem;font-weight:700;color:var(--white);margin-bottom:.25rem}
+.dir-role{font-size:.88rem;color:var(--accent);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-bottom:1.5rem}
+.dir-quote{border-left:3px solid var(--accent);padding-left:1.25rem;margin-bottom:1.75rem;font-family:var(--fd);font-style:normal;font-size:1.1rem;color:rgba(255,255,255,.7);line-height:1.6}
+.dir-text{font-size:.93rem;color:rgba(255,255,255,.62);line-height:1.85;margin-bottom:1rem}
+.timeline{margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:1rem}
+.tl-item{display:flex;align-items:center;gap:1rem}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);flex-shrink:0;box-shadow:0 0 0 3px rgba(232,116,12,.2)}
+.tl-c{display:flex;gap:1rem;align-items:baseline}
+.tl-y{font-size:.8rem;font-weight:700;color:var(--accent);min-width:40px}
+.tl-e{font-size:.875rem;color:rgba(255,255,255,.6)}
+/* CTA BANNER */
+.cta-banner{background:var(--navy);padding:4rem 0}
+.cta-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-title{font-family:var(--fd);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:700;color:var(--white);margin-bottom:.6rem}
+.cta-sub{font-size:1rem;color:rgba(255,255,255,.6);max-width:520px}
+/* CONTACT */
+.contact{padding:7rem 0;background:var(--white)}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.c-intro{font-size:1rem;color:var(--muted);margin-bottom:2.5rem;line-height:1.75}
+.c-details{display:flex;flex-direction:column;gap:1.5rem}
+.c-item{display:flex;gap:1rem;align-items:flex-start}
+.c-icon{width:40px;height:40px;background:var(--mist);border-radius:var(--rsm);display:flex;align-items:center;justify-content:center;color:var(--navy);flex-shrink:0;font-size:.9rem}
+.c-lbl{display:block;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem}
+.c-val{display:block;font-size:.93rem;color:var(--text);line-height:1.5}
+.c-val:hover{color:var(--accent)}
+.c-form{background:var(--mist);border:1px solid var(--border);border-radius:var(--rlg);padding:2.5rem;display:flex;flex-direction:column;gap:1.25rem}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fgrp{display:flex;flex-direction:column;gap:.45rem}
+.flbl{font-size:.83rem;font-weight:600;color:var(--text)}
+.flbl span{color:var(--accent)}
+.finp{background:var(--white);border:1px solid var(--border);border-radius:var(--rsm);padding:.75rem 1rem;font-family:var(--fb);font-size:.92rem;color:var(--text);transition:border-color var(--tr),box-shadow var(--tr);width:100%;outline:none;-webkit-appearance:none}
+.finp::placeholder{color:var(--muted);opacity:.6}
+.finp:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(30,33,99,.1)}
+.finp--err{border-color:#c0392b!important;box-shadow:0 0 0 3px rgba(192,57,43,.12)!important}
+.ftarea{resize:vertical;min-height:120px}
+.fnote{font-size:.78rem;color:var(--muted);text-align:center}
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .svc-grid{grid-template-columns:1fr;max-width:540px;margin:0 auto}
+  .about-inner{grid-template-columns:1fr;gap:3rem}
+  .dir-card{grid-template-columns:1fr}
+  .dir-photo{max-height:320px;aspect-ratio:unset}
+  .contact-inner{grid-template-columns:1fr;gap:3rem}
+}
+@media(max-width:768px){
+  .hero{padding:8rem 0 4rem}
+  .hero-actions{flex-direction:column}
+  .hero-actions .btn{width:100%;justify-content:center}
+  .hero-stats{flex-direction:column;align-items:flex-start;gap:1.5rem}
+  .hero-stat{padding:0}.hero-stat-div{display:none}
+  .trust-div{display:none}.trust-item{width:45%;justify-content:center}
+  .diag{transform:scale(.85)}.dnode--s span{display:none}
+  .dir-card{padding:2rem 1.5rem;gap:2rem}
+  .cta-inner{flex-direction:column;text-align:center}
+  .cta-inner .btn{width:100%;justify-content:center}
+  .frow{grid-template-columns:1fr}
+  .c-form{padding:1.75rem 1.5rem}
+  .scroll-hint{display:none}
+}
+@media(max-width:480px){.container{padding:0 1.25rem}}
+</style>
+</head>
+<body>
+<div id="vesta-header"></div>
+<main>
+<section class="hero" id="home" aria-label="Hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-grid"></div>
+    <div class="hero-orb hero-orb--1"></div>
+    <div class="hero-orb hero-orb--2"></div>
+    <svg class="hero-circuit" aria-hidden="true" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <g stroke="rgba(255,255,255,0.06)" fill="none" stroke-width="1">
+        <path d="M0 150 H200 V80 H400 V150 H600 V200 H900"/><path d="M100 0 V120 H250 V300 H100 V450 H300"/>
+        <path d="M700 0 V100 H550 V250 H700 V380 H900"/><path d="M0 400 H150 V320 H350 V400 H500 V500 H900"/>
+        <circle cx="200" cy="80" r="4" fill="rgba(255,255,255,0.12)"/><circle cx="400" cy="150" r="4" fill="rgba(255,255,255,0.12)"/>
+        <circle cx="550" cy="250" r="4" fill="rgba(255,255,255,0.12)"/><circle cx="350" cy="400" r="4" fill="rgba(255,255,255,0.12)"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-content container">
+    <div class="hero-badge"><span class="hero-badge-dot" aria-hidden="true"></span>Enterprise IT Infrastructure Specialists</div>
+    <h1 class="hero-headline">Infrastructure Built<br/>to <em>Never Fail</em></h1>
+    <p class="hero-sub">Vesta IT Services designs, deploys, and manages mission-critical networks, high-reliability WiFi, and intelligent CCTV systems, engineered to enterprise standards, available to every client.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn--accent">Discuss Your Infrastructure <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      <a href="#services" class="btn btn--ghost">Explore Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="hero-stat-number">26<sup>+</sup></span><span class="hero-stat-label">Years Enterprise Experience</span></div>
+      <div class="hero-stat-div" aria-hidden="true"></div>
+      <div class="hero-stat"><span class="hero-stat-number">60<sup>+</sup></span><span class="hero-stat-label">Servers Managed at Peak</span></div>
+      <div class="hero-stat-div" aria-hidden="true"></div>
+      <div class="hero-stat"><span class="hero-stat-number">250<sup>+</sup></span><span class="hero-stat-label">Networked Clients Supported</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
 
-  /* ── CSS ────────────────────────────────────────────────── */
-  var CSS = `
-    :root {
-      --vn:#1E2163; --vndk:#141548; --vndp:#0D0E30;
-      --va:#E8740C; --valt:#F4974A;
-      --vs:#4A5568; --vm:#F4F6FB; --vb:#DDE2EE; --vt:#2D3748;
-      --vfb:'DM Sans',system-ui,sans-serif;
-      --vfd:'DM Serif Display',Georgia,serif;
-      --nh:72px;
-    }
+<section class="trust-bar" aria-label="Trust indicators">
+  <div class="container trust-inner">
+    <div class="trust-item"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span>Enterprise-Grade Security</span></div>
+    <div class="trust-div" aria-hidden="true"></div>
+    <div class="trust-item"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i><span>Rapid Response Support</span></div>
+    <div class="trust-div" aria-hidden="true"></div>
+    <div class="trust-item"><i class="fa-solid fa-network-wired" aria-hidden="true"></i><span>WAN &amp; LAN Architecture</span></div>
+    <div class="trust-div" aria-hidden="true"></div>
+    <div class="trust-item"><i class="fa-solid fa-building" aria-hidden="true"></i><span>Corporate &amp; Residential</span></div>
+  </div>
+</section>
 
-    /* ════ HEADER ════ */
-    #vesta-nav {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      height: var(--nh);
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--vb);
-      transition: box-shadow .3s;
-      font-family: var(--vfb);
-    }
-    #vesta-nav.v-scrolled { box-shadow: 0 2px 28px rgba(30,33,99,.12); }
+<section class="services" id="services" aria-labelledby="services-title">
+  <div class="container">
+    <div class="shdr">
+      <span class="stag">What We Do</span>
+      <h2 class="stitle" id="services-title">Three Disciplines.<br/>One Partner.</h2>
+      <p class="ssub">From the data centre to the desktop, and from the boardroom to the living room, Vesta IT delivers connected, secure, and reliable infrastructure at every scale.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc-card reveal rd1" aria-labelledby="s1">
+        <div class="svc-accent" aria-hidden="true"></div>
+        <div class="svc-icon" aria-hidden="true"><i class="fa-solid fa-server"></i></div>
+        <h3 class="svc-title" id="s1">Data &amp; Network Services</h3>
+        <p class="svc-desc">From structured cabling and switch configuration to full WAN design and data centre consolidation, we architect networks that grow with your business, backed by 26 years of live enterprise operational experience.</p>
+        <ul class="svc-feats">
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Network design &amp; architecture</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Data centre &amp; WAN solutions</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Structured cabling &amp; fibre</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Ongoing managed support</li>
+        </ul>
+        <a href="networks.html" class="svc-link">Explore Networks <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      </article>
+      <article class="svc-card svc-card--feat reveal rd2" aria-labelledby="s2">
+        <div class="svc-accent" aria-hidden="true"></div>
+        <div class="svc-badge">Most Requested</div>
+        <div class="svc-icon" aria-hidden="true"><i class="fa-solid fa-wifi"></i></div>
+        <h3 class="svc-title" id="s2">Corporate &amp; Residential WiFi</h3>
+        <p class="svc-desc">Dead zones and congestion are not acceptable in any environment. We design and deploy enterprise-grade wireless networks, from multi-floor offices to large residential properties, ensuring seamless, secure connectivity.</p>
+        <ul class="svc-feats">
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Site survey &amp; RF planning</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Enterprise access point deployment</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Secure guest &amp; staff segmentation</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Residential high-performance installs</li>
+        </ul>
+        <a href="networks.html" class="svc-link">Explore WiFi <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      </article>
+      <article class="svc-card reveal rd3" aria-labelledby="s3">
+        <div class="svc-accent" aria-hidden="true"></div>
+        <div class="svc-icon" aria-hidden="true"><i class="fa-solid fa-camera"></i></div>
+        <h3 class="svc-title" id="s3">CCTV Solutions</h3>
+        <p class="svc-desc">Integrated CCTV systems with intelligent monitoring, remote access and secure storage, scaled for multi-site corporate estates, single offices, or residential installations that demand real peace of mind without compromise.</p>
+        <ul class="svc-feats">
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>HD &amp; 4K IP camera systems</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Remote monitoring &amp; alerts</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Secure local &amp; cloud storage</li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i>Solar-powered off-grid systems</li>
+        </ul>
+        <a href="cctv.html" class="svc-link">Explore CCTV <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      </article>
+    </div>
+  </div>
+</section>
 
-    .v-inner {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-    }
+<section class="about" id="about" aria-labelledby="abt-title">
+  <div class="container about-inner">
+    <div class="about-visual reveal" aria-hidden="true">
+      <div class="diag">
+        <div class="dnode"><i class="fa-solid fa-building"></i><span>50 Buildings</span></div>
+        <div class="cv"></div>
+        <div class="drow">
+          <div class="dnode dnode--s"><i class="fa-solid fa-server"></i><span>60+ Servers</span></div>
+          <div class="ch"></div>
+          <div class="dnode dnode--c"><i class="fa-solid fa-database"></i><span>Central<br/>Data Centre</span></div>
+          <div class="ch"></div>
+          <div class="dnode dnode--s"><i class="fa-solid fa-desktop"></i><span>250+ Clients</span></div>
+        </div>
+        <div class="cv"></div>
+        <div class="dnode"><i class="fa-solid fa-globe"></i><span>WAN Network</span></div>
+        <div class="dlabel">Peel Ports Medway — Managed by John Bushnell, 1995&ndash;2022</div>
+      </div>
+    </div>
+    <div class="about-content reveal rd1">
+      <span class="stag">Why Vesta</span>
+      <h2 class="stitle" id="abt-title">We&rsquo;ve Built This Before — at Enterprise Scale</h2>
+      <p class="abt">Most IT providers talk about enterprise experience. Ours is documented across 26 years of live operational responsibility at one of the UK&rsquo;s most complex infrastructure environments.</p>
+      <p class="abt">When our director joined Peel Ports Medway in 1995, the entire IT estate amounted to a handful of computers and a single server. By the time he left in 2022, he had personally designed and managed a network spanning 50 buildings, over 60 servers, and more than 250 networked clients.</p>
+      <p class="abt">That is the depth of knowledge Vesta IT Services brings to every engagement, whether we&rsquo;re wiring a corporate headquarters or securing a residential property.</p>
+      <a href="#director" class="btn btn--primary">Meet the Director <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+    </div>
+  </div>
+</section>
 
-    /* Logo — left */
-    .v-logo { display: flex; align-items: center; flex-shrink: 0; }
-    .v-logo img { height: 42px; width: auto; max-width: 180px; display: block; object-fit: contain; }
+<section class="director" id="director" aria-labelledby="dir-title">
+  <div class="dir-bg" aria-hidden="true"></div>
+  <div class="container dir-inner">
+    <div class="dir-hdr reveal">
+      <span class="stag stag--lt">Leadership</span>
+      <h2 class="stitle stitle--lt" id="dir-title">The Expertise Behind Every Decision</h2>
+    </div>
+    <div class="dir-card reveal rd1">
+      <div>
+        <div class="dir-photo" aria-label="John Bushnell, Director">
+          <img src="john-bushnell.webp" alt="John Bushnell, Director of Vesta IT Services Ltd"/>
+        </div>
+        <div class="dir-creds">
+          <div class="cred"><span class="cred-n">26</span><span class="cred-l">Years Enterprise Network Management</span></div>
+          <div class="cred"><span class="cred-n">1995</span><span class="cred-l">Career Start in Network Infrastructure</span></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="dir-name">John Bushnell</h3>
+        <p class="dir-role">Director, Vesta IT Services Ltd</p>
+        <blockquote class="dir-quote">&ldquo;Real infrastructure expertise isn&rsquo;t learned in a classroom. It&rsquo;s earned by keeping critical systems running &mdash; year after year &mdash; when the stakes are real and failure isn&rsquo;t an option.&rdquo;</blockquote>
+        <p class="dir-text">John Bushnell&rsquo;s career spans nearly three decades at the operational heart of enterprise IT. As Network Services Project Manager at Peel Ports Medway from 1995 to 2022, he was responsible for one of the most sustained infrastructure evolution programmes in the UK ports sector.</p>
+        <p class="dir-text">He arrived to find 10 computers and a single server. He left having designed, built, and managed a network of extraordinary scale &mdash; 50 buildings interconnected, more than 60 servers in production, and upwards of 250 clients dependent on the infrastructure he had created. The final chapter of his tenure was the most technically demanding: consolidating that entire estate into a centralised, high-efficiency WAN-style data centre.</p>
+        <p class="dir-text">That knowledge now underpins every Vesta IT project. When you engage us, you&rsquo;re working with someone who has already solved problems at a scale most IT providers will never encounter.</p>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-c"><span class="tl-y">1995</span><span class="tl-e">Joined Peel Ports Medway &mdash; 10 computers, 1 server</span></div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-c"><span class="tl-y">2000s</span><span class="tl-e">Scaled network to 50 buildings &amp; 60+ servers</span></div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-c"><span class="tl-y">2010s</span><span class="tl-e">250+ clients networked across the full estate</span></div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-c"><span class="tl-y">2022</span><span class="tl-e">Completed WAN data centre consolidation &mdash; founded Vesta IT Services</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    /* Centre links */
-    .v-links {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      list-style: none;
-      flex: 1;
-      justify-content: center;
-    }
+<section class="cta-banner" aria-labelledby="cta-title">
+  <div class="container cta-inner">
+    <div>
+      <h2 class="cta-title" id="cta-title">Ready to rethink your infrastructure?</h2>
+      <p class="cta-sub">Whether you&rsquo;re planning a new network, upgrading your WiFi, or securing your premises &mdash; let&rsquo;s have a conversation.</p>
+    </div>
+    <a href="#contact" class="btn btn--accent btn--large">Start the Conversation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+  </div>
+</section>
 
-    /* Plain link */
-    .v-lnk {
-      font-size: .875rem;
-      font-weight: 500;
-      color: var(--vs);
-      padding: .48rem .9rem;
-      border-radius: 7px;
-      transition: color .2s, background .2s;
-      white-space: nowrap;
-      display: inline-block;
-    }
-    .v-lnk:hover, .v-lnk.v-on { color: var(--vn); background: var(--vm); }
-
-    /* Dropdown trigger */
-    .v-dd { position: relative; }
-    .v-dd-a {
-      display: flex;
-      align-items: center;
-      gap: .3rem;
-      font-size: .875rem;
-      font-weight: 500;
-      color: var(--vs);
-      padding: .48rem .9rem;
-      border-radius: 7px;
-      cursor: pointer;
-      transition: color .2s, background .2s;
-      white-space: nowrap;
-      text-decoration: none;
-    }
-    .v-dd-a svg {
-      width: 10px; height: 10px;
-      stroke: currentColor; fill: none;
-      stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
-      transition: transform .2s;
-      flex-shrink: 0;
-    }
-    .v-dd:hover .v-dd-a { color: var(--vn); background: var(--vm); }
-    .v-dd:hover .v-dd-a svg { transform: rotate(180deg); }
-    .v-dd-a.v-on { color: var(--vn); background: var(--vm); }
-
-    /* Dropdown panel */
-    .v-drop {
-      position: absolute;
-      top: calc(100% + 8px);
-      left: 50%;
-      transform: translateX(-50%) translateY(4px);
-      background: #fff;
-      border: 1px solid var(--vb);
-      border-radius: 12px;
-      box-shadow: 0 16px 48px rgba(30,33,99,.13);
-      padding: .5rem;
-      min-width: 230px;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transition: opacity .18s, transform .18s, visibility 0s linear .18s;
-      z-index: 500;
-    }
-    /* Invisible bridge so mouse can reach the panel */
-    .v-drop::after {
-      content: '';
-      position: absolute;
-      top: -14px; left: 0; right: 0;
-      height: 14px;
-    }
-    /* Arrow */
-    .v-drop::before {
-      content: '';
-      position: absolute;
-      top: -6px; left: 50%;
-      transform: translateX(-50%) rotate(45deg);
-      width: 11px; height: 11px;
-      background: #fff;
-      border-left: 1px solid var(--vb);
-      border-top: 1px solid var(--vb);
-    }
-    .v-dd:hover .v-drop {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: all;
-      transform: translateX(-50%) translateY(0);
-      transition: opacity .18s, transform .18s, visibility 0s linear 0s;
-    }
-
-    /* Drop items */
-    .v-di {
-      display: flex;
-      align-items: center;
-      gap: .7rem;
-      padding: .6rem .85rem;
-      border-radius: 8px;
-      font-size: .845rem;
-      font-weight: 500;
-      color: var(--vt);
-      transition: background .15s, color .15s;
-      text-decoration: none;
-    }
-    .v-di:hover { background: var(--vm); color: var(--vn); }
-    .v-di.v-on  { background: var(--vm); color: var(--vn); font-weight: 600; }
-    .v-di-ico {
-      width: 28px; height: 28px;
-      border-radius: 6px;
-      background: #EEEEFF;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .v-di-ico svg {
-      width: 14px; height: 14px;
-      stroke: var(--vn); fill: none;
-      stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
-    }
-    .v-di-txt { font-size: .84rem; font-weight: 500; color: var(--vt); }
-    .v-di:hover .v-di-txt, .v-di.v-on .v-di-txt { color: var(--vn); }
-
-    /* CTA — right */
-    .v-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      padding: .58rem 1.3rem;
-      background: var(--vn);
-      color: #fff;
-      font-size: .875rem;
-      font-weight: 600;
-      font-family: var(--vfb);
-      border-radius: 7px;
-      white-space: nowrap;
-      flex-shrink: 0;
-      text-decoration: none;
-      transition: background .2s, transform .2s;
-    }
-    .v-cta:hover { background: var(--va); transform: translateY(-1px); }
-
-    /* Hamburger */
-    .v-ham {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
-      width: 40px; height: 40px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      flex-shrink: 0;
-      border-radius: 7px;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-    .v-ham span {
-      display: block;
-      width: 22px; height: 2px;
-      background: var(--vn);
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
-
-    /* Mobile overlay */
-    .v-mob {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 2000;
-      background: rgba(13,14,48,.97);
-      flex-direction: column;
-      align-items: stretch;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transition: opacity .25s;
-      font-family: var(--vfb);
-    }
-    .v-mob.v-open { display: flex !important; visibility: visible; pointer-events: all; opacity: 1; }
-    .v-mob-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-      flex-shrink: 0;
-    }
-    .v-mob-bar img { height: 34px; width: auto; opacity: .9; }
-    .v-mob-close {
-      display: flex;
-      align-items: center;
-      gap: .4rem;
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 7px;
-      color: rgba(255,255,255,.6);
-      font-size: .8rem;
-      font-weight: 500;
-      font-family: var(--vfb);
-      padding: .45rem .9rem;
-      cursor: pointer;
-      transition: background .15s, color .15s;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-    .v-mob-close:hover { background: rgba(255,255,255,.12); color: #fff; }
-    .v-mob-close svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; }
-    .v-mob-scroll { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 1rem 1.75rem 3rem; }
-    .v-mob-sec {
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.28);
-      display: block;
-      padding: 1.1rem 0 .4rem;
-    }
-    .v-mob-sec:first-child { padding-top: .2rem; }
-    .v-mob-scroll a {
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: rgba(255,255,255,.78);
-      padding: .65rem 0;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      text-decoration: none;
-      transition: color .2s;
-    }
-    .v-mob-scroll a:hover { color: #fff; }
-    .v-mob-scroll a i { color: var(--va); font-size: .9rem; width: 18px; text-align: center; flex-shrink: 0; }
-    .v-mob-cta {
-      margin-top: 1.5rem;
-      display: inline-flex !important;
-      align-items: center;
-      gap: .45rem;
-      padding: .88rem 1.5rem !important;
-      background: var(--va) !important;
-      color: #fff !important;
-      font-size: 1rem !important;
-      font-weight: 600 !important;
-      border-radius: 8px;
-      border-bottom: none !important;
-      width: auto !important;
-      text-decoration: none;
-    }
-    .v-mob-cta:hover { background: var(--valt) !important; }
-
-    /* ════ FOOTER ════ */
-    #vesta-footer {
-      background: var(--vndp);
-      font-family: var(--vfb);
-      padding: 4rem 0 0;
-    }
-    .vf-inner {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 2rem 3rem;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 3rem;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-    .vf-logo { margin-bottom: .9rem; }
-    .vf-logo img { height: 42px; width: auto; max-width: 185px; opacity: .9; }
-    .vf-tag { font-size: .875rem; color: rgba(255,255,255,.35); line-height: 1.65; max-width: 22ch; margin-bottom: 1.5rem; }
-    .vf-socs { display: flex; gap: .55rem; }
-    .vf-soc {
-      width: 33px; height: 33px;
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 7px;
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,.5);
-      font-size: .85rem;
-      text-decoration: none;
-      transition: background .2s, color .2s, border-color .2s;
-    }
-    .vf-soc:hover { background: var(--va); color: #fff; border-color: var(--va); }
-    .vf-col-h { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 1rem; }
-    .vf-col ul { display: flex; flex-direction: column; gap: .5rem; }
-    .vf-col ul a { font-size: .855rem; color: rgba(255,255,255,.48); text-decoration: none; transition: color .2s; }
-    .vf-col ul a:hover { color: #fff; }
-    .vf-col-gap { margin-top: 1.5rem; }
-    .vf-ci { display: flex; align-items: flex-start; gap: .6rem; margin-bottom: .7rem; }
-    .vf-ci i { color: var(--va); font-size: .82rem; margin-top: .18rem; width: 13px; flex-shrink: 0; }
-    .vf-ci span, .vf-ci a { font-size: .82rem; color: rgba(255,255,255,.45); line-height: 1.5; text-decoration: none; transition: color .2s; }
-    .vf-ci a:hover { color: var(--va); }
-    .vf-bot {
-      max-width: 1240px; margin: 0 auto; padding: 1.1rem 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .vf-copy { font-size: .77rem; color: rgba(255,255,255,.2); }
-    .vf-legal { display: flex; gap: 1.25rem; }
-    .vf-legal a { font-size: .77rem; color: rgba(255,255,255,.2); text-decoration: none; transition: color .2s; }
-    .vf-legal a:hover { color: rgba(255,255,255,.55); }
-
-    /* ════ RESPONSIVE ════ */
-    @media (max-width: 860px) {
-      .v-links { display: none; }
-      .v-cta   { display: none; }
-      .v-ham   { display: flex; }
-    }
-    @media (max-width: 1024px) {
-      .vf-inner { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-      .vf-inner > div:first-child { grid-column: span 2; }
-    }
-    @media (max-width: 600px) {
-      .v-inner  { padding: 0 1.25rem; }
-      .vf-inner { grid-template-columns: 1fr; padding: 0 1.5rem 2.5rem; }
-      .vf-inner > div:first-child { grid-column: span 1; }
-      .vf-bot   { flex-direction: column; text-align: center; padding: 1rem 1.5rem; }
-    }
-  `;
-
-  /* ── ACTIVE PAGE ─────────────────────────────────────────── */
-  var page = window.location.pathname.split('/').pop() || 'index.html';
-
-  function lnkClass(href) {
-    return page === href ? ' class="v-lnk v-on"' : ' class="v-lnk"';
-  }
-  function ddClass(href) {
-    return page === href ? ' class="v-di v-on"' : ' class="v-di"';
-  }
-  function ddBtnClass(pages) {
-    var active = pages.some(function(h){ return page === h; });
-    return active ? ' class="v-dd-a v-on"' : ' class="v-dd-a"';
-  }
-
-  var SVC_PAGES  = ['networks.html','cctv.html','ai-analytics.html','monitoring.html'];
-  var TOOL_PAGES = ['cctv-site-tool.html','wireless-planner.html'];
-
-  /* ── NAV HTML ────────────────────────────────────────────── */
-  var MOBILE_NAV =
-    '<div class="v-mob" id="vMob" style="display:none">' +
-      '<div class="v-mob-bar">' +
-        '<img src="' + BLUE_LOGO + '" alt="Vesta IT Services Ltd"/>' +
-        '<button class="v-mob-close" id="vMobClose" aria-label="Close menu">' +
-          '<svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Close' +
-        '</button>' +
-      '</div>' +
-      '<div class="v-mob-scroll">' +
-        '<span class="v-mob-sec">Company</span>' +
-        '<a href="index.html#about"><i class="fa-solid fa-building-columns" aria-hidden="true"></i>About Vesta IT</a>' +
-        '<a href="index.html#director"><i class="fa-solid fa-user-tie" aria-hidden="true"></i>Leadership</a>' +
-        '<span class="v-mob-sec">Services</span>' +
-        '<a href="networks.html"><i class="fa-solid fa-network-wired" aria-hidden="true"></i>Wireless &amp; Fixed Networks</a>' +
-        '<a href="cctv.html"><i class="fa-solid fa-video" aria-hidden="true"></i>CCTV Systems</a>' +
-        '<a href="ai-analytics.html"><i class="fa-solid fa-brain" aria-hidden="true"></i>AI &amp; Analytics</a>' +
-        '<a href="monitoring.html"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i>24/7 Monitoring</a>' +
-        '<span class="v-mob-sec">Tools</span>' +
-        '<a href="cctv-site-tool.html"><i class="fa-solid fa-crosshairs" aria-hidden="true"></i>CCTV Site Tool</a>' +
-        '<a href="wireless-planner.html"><i class="fa-solid fa-wifi" aria-hidden="true"></i>Wireless Planner</a>' +
-        '<span class="v-mob-sec">Contact</span>' +
-        '<a href="index.html#contact"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Contact Us</a>' +
-        '<a href="index.html#contact" class="v-mob-cta">Get In Touch &rarr;</a>' +
-      '</div>' +
-    '</div>';
-
-  var DESKTOP_NAV =
-    '<nav id="vesta-nav">' +
-      '<div class="v-inner">' +
-
-        // Logo — left
-        '<a href="index.html" class="v-logo" aria-label="Vesta IT Services home">' +
-          '<img src="' + BLUE_LOGO + '" alt="Vesta IT Services Ltd"/>' +
-        '</a>' +
-
-        // Links — centre (flex:1 + justify-content:center)
-        '<ul class="v-links" role="list">' +
-
-          // About
-          '<li><a href="index.html#about"' + lnkClass('index.html') + '>About</a></li>' +
-
-          // Services ▾
-          '<li class="v-dd">' +
-            '<a href="index.html#services"' + ddBtnClass(SVC_PAGES) + '>' +
-              'Services <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>' +
-            '</a>' +
-            '<div class="v-drop" role="menu">' +
-              '<a href="networks.html"' + ddClass('networks.html') + '>' +
-                '<div class="v-di-ico"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="6" height="6" rx="1"/><rect x="16" y="2" width="6" height="6" rx="1"/><rect x="9" y="16" width="6" height="6" rx="1"/><path d="M5 8v4a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="12" y1="14" x2="12" y2="16"/></svg></div>' +
-                '<span class="v-di-txt">Wireless &amp; Fixed Networks</span>' +
-              '</a>' +
-              '<a href="cctv.html"' + ddClass('cctv.html') + '>' +
-                '<div class="v-di-ico"><svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>' +
-                '<span class="v-di-txt">CCTV Systems</span>' +
-              '</a>' +
-              '<a href="ai-analytics.html"' + ddClass('ai-analytics.html') + '>' +
-                '<div class="v-di-ico"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2z"/><path d="M8 12l2 2 4-4"/></svg></div>' +
-                '<span class="v-di-txt">AI &amp; Analytics</span>' +
-              '</a>' +
-              '<a href="monitoring.html"' + ddClass('monitoring.html') + '>' +
-                '<div class="v-di-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>' +
-                '<span class="v-di-txt">24/7 Monitoring</span>' +
-              '</a>' +
-            '</div>' +
-          '</li>' +
-
-          // Leadership
-          '<li><a href="index.html#director"' + lnkClass('#director') + '>Leadership</a></li>' +
-
-          // Tools ▾
-          '<li class="v-dd">' +
-            '<a href="#"' + ddBtnClass(TOOL_PAGES) + '>' +
-              'Tools <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>' +
-            '</a>' +
-            '<div class="v-drop" role="menu">' +
-              '<a href="cctv-site-tool.html"' + ddClass('cctv-site-tool.html') + '>' +
-                '<div class="v-di-ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>' +
-                '<span class="v-di-txt">CCTV Site Tool</span>' +
-              '</a>' +
-              '<a href="wireless-planner.html"' + ddClass('wireless-planner.html') + '>' +
-                '<div class="v-di-ico"><svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg></div>' +
-                '<span class="v-di-txt">Wireless Planner</span>' +
-              '</a>' +
-            '</div>' +
-          '</li>' +
-
-          // Contact
-          '<li><a href="index.html#contact"' + lnkClass('#contact') + '>Contact</a></li>' +
-
-        '</ul>' +
-
-        // CTA — right
-        '<a href="index.html#contact" class="v-cta">Get In Touch &rarr;</a>' +
-
-        // Hamburger
-        '<button class="v-ham" id="vHam" aria-label="Open menu" aria-expanded="false">' +
-          '<span></span><span></span><span></span>' +
-        '</button>' +
-
-      '</div>' +
-    '</nav>';
-
-  /* ── FOOTER HTML ─────────────────────────────────────────── */
-  var year = new Date().getFullYear();
-  var FOOTER_HTML =
-    '<div class="vf-inner">' +
-      '<div>' +
-        '<div class="vf-logo"><img src="' + WHITE_LOGO + '" alt="Vesta IT Services Ltd"/></div>' +
-        '<p class="vf-tag">Enterprise-grade IT infrastructure, delivered with the expertise it deserves.</p>' +
-        '<div class="vf-socs">' +
-          '<a href="#" class="vf-soc" aria-label="Vesta IT on LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>' +
-          '<a href="#" class="vf-soc" aria-label="Vesta IT on X / Twitter"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>' +
-        '</div>' +
-      '</div>' +
-      '<div class="vf-col">' +
-        '<h3 class="vf-col-h">Services</h3>' +
-        '<ul>' +
-          '<li><a href="networks.html">Wireless &amp; Fixed Networks</a></li>' +
-          '<li><a href="cctv.html">CCTV Systems</a></li>' +
-          '<li><a href="ai-analytics.html">AI &amp; Analytics</a></li>' +
-          '<li><a href="monitoring.html">24/7 Monitoring</a></li>' +
-        '</ul>' +
-      '</div>' +
-      '<div class="vf-col">' +
-        '<h3 class="vf-col-h">Tools</h3>' +
-        '<ul>' +
-          '<li><a href="cctv-site-tool.html">CCTV Site Tool</a></li>' +
-          '<li><a href="wireless-planner.html">Wireless Planner</a></li>' +
-        '</ul>' +
-        '<div class="vf-col-gap">' +
-          '<h3 class="vf-col-h">Company</h3>' +
-          '<ul>' +
-            '<li><a href="index.html#about">About Vesta IT</a></li>' +
-            '<li><a href="index.html#director">Leadership</a></li>' +
-            '<li><a href="index.html#contact">Contact Us</a></li>' +
-          '</ul>' +
-        '</div>' +
-      '</div>' +
-      '<div class="vf-col">' +
-        '<h3 class="vf-col-h">Contact</h3>' +
-        '<div class="vf-ci"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>' + ADDRESS + '</span></div>' +
-        '<div class="vf-ci"><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+441634000000">' + PHONE + '</a></div>' +
-        '<div class="vf-ci"><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:' + EMAIL + '">' + EMAIL + '</a></div>' +
-        '<div class="vf-ci"><i class="fa-solid fa-clock" aria-hidden="true"></i><span>Mon&ndash;Fri, 08:00&ndash;18:00</span></div>' +
-      '</div>' +
-    '</div>' +
-    '<div class="vf-bot">' +
-      '<p class="vf-copy">&copy; ' + year + ' Vesta IT Services Ltd. All rights reserved. Registered in England &amp; Wales.</p>' +
-      '<div class="vf-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>' +
-    '</div>';
-
-  /* ── INJECT CSS ──────────────────────────────────────────── */
-  var style = document.createElement('style');
-  style.id = 'vesta-styles';
-  style.textContent = CSS;
-  document.head.appendChild(style);
-
-  /* ── INJECT NAV ──────────────────────────────────────────── */
-  var hdrEl = document.getElementById('vesta-header');
-  if (hdrEl) {
-    // Replace the placeholder div entirely (Fyrfly pattern — outerHTML swap)
-    hdrEl.outerHTML = MOBILE_NAV + DESKTOP_NAV;
-  }
-
-  /* ── INJECT FOOTER ───────────────────────────────────────── */
-  var ftrEl = document.getElementById('vesta-footer');
-  if (ftrEl) { ftrEl.innerHTML = FOOTER_HTML; }
-
-  /* ── SCROLL SHADOW ───────────────────────────────────────── */
-  var navEl = document.getElementById('vesta-nav');
-  if (navEl) {
-    var ticking = false;
-    window.addEventListener('scroll', function () {
-      if (!ticking) {
-        requestAnimationFrame(function () {
-          navEl.classList.toggle('v-scrolled', window.scrollY > 20);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-  }
-
-  /* ── MOBILE MENU ─────────────────────────────────────────── */
-  var ham    = document.getElementById('vHam');
-  var mob    = document.getElementById('vMob');
-  var cls    = document.getElementById('vMobClose');
-
-  function openMob() {
-    mob.style.display = 'flex';
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () { mob.classList.add('v-open'); });
-    });
-    if (ham) ham.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeMob() {
-    if (mob) mob.classList.remove('v-open');
-    if (ham) ham.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-    setTimeout(function () { if (mob) mob.style.display = 'none'; }, 260);
-  }
-
-  if (ham) ham.addEventListener('click', openMob);
-  if (cls) cls.addEventListener('click', closeMob);
-  if (mob) {
-    mob.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMob); });
-  }
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && mob && mob.classList.contains('v-open')) closeMob();
+<section class="contact" id="contact" aria-labelledby="con-title">
+  <div class="container contact-inner">
+    <div class="contact-info reveal">
+      <span class="stag">Get In Touch</span>
+      <h2 class="stitle" id="con-title">Let&rsquo;s Talk Infrastructure</h2>
+      <p class="c-intro">Whether you have a specific project in mind or simply want to explore what better infrastructure could look like for your organisation, we&rsquo;re ready to listen.</p>
+      <address class="c-details">
+        <div class="c-item"><div class="c-icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div><div><span class="c-lbl">Registered Office</span><span class="c-val">Vesta IT Services Ltd<br/>King Arthurs Court Maidstone Road, Charing, Ashford, Kent, England, TN27 0JS</span></div></div>
+        <div class="c-item"><div class="c-icon"><i class="fa-solid fa-phone" aria-hidden="true"></i></div><div><span class="c-lbl">Phone</span><a href="tel:+441634000000" class="c-val">+44 (0)1634 000 000</a></div></div>
+        <div class="c-item"><div class="c-icon"><i class="fa-solid fa-envelope" aria-hidden="true"></i></div><div><span class="c-lbl">Email</span><a href="mailto:info@vestaitservices.co.uk" class="c-val">info@vestaitservices.co.uk</a></div></div>
+        <div class="c-item"><div class="c-icon"><i class="fa-solid fa-clock" aria-hidden="true"></i></div><div><span class="c-lbl">Office Hours</span><span class="c-val">Monday &ndash; Friday, 08:00 &ndash; 18:00</span></div></div>
+      </address>
+    </div>
+    <div class="reveal rd1">
+      <form class="c-form" id="contactForm" novalidate aria-label="Contact form">
+        <div class="frow">
+          <div class="fgrp"><label for="fname" class="flbl">First Name <span aria-hidden="true">*</span></label><input type="text" id="fname" name="first_name" class="finp" placeholder="John" required autocomplete="given-name"/></div>
+          <div class="fgrp"><label for="lname" class="flbl">Last Name <span aria-hidden="true">*</span></label><input type="text" id="lname" name="last_name" class="finp" placeholder="Smith" required autocomplete="family-name"/></div>
+        </div>
+        <div class="fgrp"><label for="email" class="flbl">Email Address <span aria-hidden="true">*</span></label><input type="email" id="email" name="email" class="finp" placeholder="john.smith@company.co.uk" required autocomplete="email"/></div>
+        <div class="fgrp"><label for="phone" class="flbl">Phone Number</label><input type="tel" id="phone" name="phone" class="finp" placeholder="+44 (0)7700 000000" autocomplete="tel"/></div>
+        <div class="fgrp">
+          <label for="service" class="flbl">Service of Interest <span aria-hidden="true">*</span></label>
+          <select id="service" name="service" class="finp" required>
+            <option value="" disabled selected>Select a service&hellip;</option>
+            <option value="networks">Wireless &amp; Fixed Networks</option>
+            <option value="cctv">CCTV Systems</option>
+            <option value="ai">AI &amp; Analytics</option>
+            <option value="monitoring">24/7 Monitoring</option>
+            <option value="general">General Enquiry</option>
+          </select>
+        </div>
+        <div class="fgrp"><label for="message" class="flbl">Message <span aria-hidden="true">*</span></label><textarea id="message" name="message" class="finp ftarea" rows="5" placeholder="Tell us about your project or requirements&hellip;" required></textarea></div>
+        <button type="submit" class="btn btn--accent btn--full">Send Enquiry <i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
+        <p class="fnote">We typically respond within one business day.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+<footer id="vesta-footer" role="contentinfo"></footer>
+<script>
+(function(){
+  var f=document.getElementById('contactForm');
+  if(!f)return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=f.querySelector('button[type="submit"]'),orig=btn.innerHTML,valid=true;
+    f.querySelectorAll('[required]').forEach(function(i){i.classList.remove('finp--err');if(!i.value.trim()){i.classList.add('finp--err');valid=false;}});
+    if(!valid){btn.textContent='Please fill in all required fields';btn.style.background='#c0392b';setTimeout(function(){btn.innerHTML=orig;btn.style.background='';},3000);return;}
+    btn.innerHTML='<i class="fa-solid fa-circle-check"></i> Enquiry Sent — We’ll be in touch shortly';
+    btn.style.background='#1a7a4a';btn.disabled=true;
+    setTimeout(function(){btn.innerHTML=orig;btn.style.background='';btn.disabled=false;f.reset();},6000);
   });
-
-  /* ── SMOOTH SCROLL ───────────────────────────────────────── */
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest('a[href^="#"]');
-    if (!a) return;
-    var tgt = document.querySelector(a.getAttribute('href'));
-    if (tgt) {
-      e.preventDefault();
-      window.scrollTo({ top: tgt.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
-    }
-  });
-
-  /* ── SCROLL REVEAL ───────────────────────────────────────── */
-  var revEls = document.querySelectorAll('.reveal');
-  if (revEls.length) {
-    if ('IntersectionObserver' in window) {
-      var obs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-        });
-      }, { threshold: 0.1 });
-      revEls.forEach(function (el) { obs.observe(el); });
-    } else {
-      revEls.forEach(function (el) { el.classList.add('visible'); });
-    }
-  }
-
+  f.querySelectorAll('[required]').forEach(function(i){i.addEventListener('input',function(){if(i.value.trim())i.classList.remove('finp--err');});});
 })();
+</script>
+</body>
+</html>
