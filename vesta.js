@@ -392,7 +392,7 @@
     return active ? ' class="v-dd-a v-on"' : ' class="v-dd-a"';
   }
 
-  var SVC_PAGES  = ['networks.html','cctv.html','ai-analytics.html','monitoring.html'];
+  var SVC_PAGES  = ['networks.html','cctv.html','ai-analytics.html','monitoring.html','fire-detection.html','maintenance.html'];
   var TOOL_PAGES = ['cctv-site-tool.html','wireless-planner.html'];
 
   /* ── NAV HTML ────────────────────────────────────────────── */
@@ -413,6 +413,8 @@
         '<a href="cctv.html"><i class="fa-solid fa-video" aria-hidden="true"></i>CCTV Systems</a>' +
         '<a href="ai-analytics.html"><i class="fa-solid fa-brain" aria-hidden="true"></i>AI &amp; Analytics</a>' +
         '<a href="monitoring.html"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i>24/7 Monitoring</a>' +
+        '<a href="fire-detection.html"><i class="fa-solid fa-fire-extinguisher" aria-hidden="true"></i>Fire Detection &amp; Prevention</a>' +
+        '<a href="maintenance.html"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i>Maintenance &amp; Support</a>' +
         '<span class="v-mob-sec">Tools</span>' +
         '<a href="cctv-site-tool.html"><i class="fa-solid fa-crosshairs" aria-hidden="true"></i>CCTV Site Tool</a>' +
         '<a href="wireless-planner.html"><i class="fa-solid fa-wifi" aria-hidden="true"></i>Wireless Planner</a>' +
@@ -458,6 +460,14 @@
               '<a href="monitoring.html"' + ddClass('monitoring.html') + '>' +
                 '<div class="v-di-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>' +
                 '<span class="v-di-txt">24/7 Monitoring</span>' +
+              '</a>' +
+              '<a href="fire-detection.html"' + ddClass('fire-detection.html') + '>' +
+                '<div class="v-di-ico"><svg viewBox="0 0 24 24"><path d="M12 2c0 6-6 8-6 14a6 6 0 0012 0c0-6-6-8-6-14z"/><path d="M12 22v-4"/><path d="M9 18h6"/></svg></div>' +
+                '<span class="v-di-txt">Fire Detection &amp; Prevention</span>' +
+              '</a>' +
+              '<a href="maintenance.html"' + ddClass('maintenance.html') + '>' +
+                '<div class="v-di-ico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>' +
+                '<span class="v-di-txt">Maintenance &amp; Support</span>' +
               '</a>' +
             '</div>' +
           '</li>' +
@@ -517,6 +527,8 @@
           '<li><a href="cctv.html">CCTV Systems</a></li>' +
           '<li><a href="ai-analytics.html">AI &amp; Analytics</a></li>' +
           '<li><a href="monitoring.html">24/7 Monitoring</a></li>' +
+          '<li><a href="fire-detection.html">Fire Detection &amp; Prevention</a></li>' +
+          '<li><a href="maintenance.html">Maintenance &amp; Support</a></li>' +
         '</ul>' +
       '</div>' +
       '<div class="vf-col">' +
