@@ -8,7 +8,7 @@
   /* ── CONFIG ─────────────────────────────────────────────── */
   var BLUE_LOGO = 'logo-blue.webp';
   var WHITE_LOGO = 'logo-white.webp';
-  var EMAIL   = 'info@vestaitservices.co.uk';
+  var EMAIL   = 'info@vestait.co.uk';
   var PHONE   = '+44 (0)1634 000 000';
   var ADDRESS = 'King Arthurs Court Maidstone Road, Charing, Ashford, Kent, England, TN27 0JS';
 
