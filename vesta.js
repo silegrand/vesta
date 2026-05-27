@@ -357,6 +357,8 @@
     .vf-legal { display: flex; gap: 1.25rem; }
     .vf-legal a { font-size: .77rem; color: rgba(255,255,255,.45); text-decoration: none; transition: color .2s; }
     .vf-legal a:hover { color: rgba(255,255,255,.55); }
+    .vf-credit { font-size: .77rem; color: rgba(255,255,255,.35); text-decoration: none; transition: color .2s; border-left: 1px solid rgba(255,255,255,.12); padding-left: 1.25rem; }
+    .vf-credit:hover { color: rgba(255,255,255,.6); }
 
     /* ════ RESPONSIVE ════ */
     @media (max-width: 860px) {
@@ -542,7 +544,7 @@
     '</div>' +
     '<div class="vf-bot">' +
       '<p class="vf-copy">&copy; ' + year + ' Vesta IT Services Ltd. All rights reserved. Registered in England &amp; Wales.</p>' +
-       <a href="https://www.marketingformymates.com" rel="dofollow" target="_blank" style="color: inherit; text-decoration: none;">Built by marketingformymates.com</a>  +    
+      '<a href="https://www.marketingformymates.com" class="vf-credit" rel="dofollow" target="_blank">Built by marketingformymates.com</a>' +
       '<div class="vf-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>' +
     '</div>';
 
