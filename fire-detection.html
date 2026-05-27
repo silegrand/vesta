@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Fire Detection &amp; Prevention | Vesta IT Services Ltd</title>
+<meta name="description" content="Comprehensive fire detection, alarm and suppression systems for commercial, industrial and public sector premises. Designed, installed and maintained by Vesta IT Services Ltd."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
+  <script src="vesta.js" defer></script>
+<style>
+
+:root{
+  --navy:#1E2163;--navy-dark:#141548;--navy-deeper:#0D0E30;
+  --accent:#E8740C;--accent-lt:#F4974A;
+  --steel:#4A5568;--mist:#F4F6FB;--white:#fff;--border:#DDE2EE;
+  --text:#2D3748;--muted:#64748B;
+  --rsm:6px;--rmd:12px;--rlg:20px;
+  --shadow-sm:0 1px 4px rgba(30,33,99,.08);
+  --shadow-md:0 4px 20px rgba(30,33,99,.12);
+  --shadow-lg:0 12px 40px rgba(30,33,99,.16);
+  --tr:.25s cubic-bezier(.4,0,.2,1);
+  --fd:'DM Sans',system-ui,sans-serif;
+  --fb:'DM Sans',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--fb);color:var(--text);background:var(--white);line-height:1.7;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-style:none}address{font-style:normal}
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 2rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.75rem;border-radius:var(--rsm);font-family:var(--fb);font-size:.95rem;font-weight:600;cursor:pointer;border:2px solid transparent;transition:var(--tr);white-space:nowrap}
+.btn i{transition:transform var(--tr)}.btn:hover i{transform:translateX(3px)}
+.btn--primary{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.btn--primary:hover{background:var(--navy-dark);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn--accent{background:var(--accent);color:var(--white);border-color:var(--accent)}
+.btn--accent:hover{background:var(--accent-lt);transform:translateY(-1px);box-shadow:0 6px 24px rgba(232,116,12,.35)}
+.btn--ghost{background:transparent;color:var(--white);border-color:rgba(255,255,255,.4)}
+.btn--ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}
+.btn--large{padding:1.1rem 2.25rem;font-size:1.05rem}.btn--full{width:100%;justify-content:center}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}
+
+.stag{display:inline-block;font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}
+.stag--lt{color:rgba(255,255,255,.55)}
+.sec-h2{font-family:var(--fd);font-size:clamp(1.8rem,3.5vw,2.5rem);color:var(--navy-deeper);margin-bottom:1.25rem;line-height:1.15}
+.sec-h2--lt{color:var(--white)}
+.sec-intro{font-size:1rem;color:var(--muted);max-width:64ch;line-height:1.8;margin-bottom:3rem}
+.sec-intro--lt{color:rgba(255,255,255,.52)}
+/* BREADCRUMB */
+.breadcrumb{background:var(--navy-deeper);padding:.55rem 0}
+.bc-inner{display:flex;align-items:center;gap:.5rem;font-size:.76rem;color:rgba(255,255,255,.42)}
+.bc-inner a{color:rgba(255,255,255,.45);transition:color .2s}.bc-inner a:hover{color:var(--accent)}
+.bc-sep{color:rgba(255,255,255,.2)}.bc-current{color:rgba(255,255,255,.72)}
+/* PAGE HERO */
+.page-hero{background:var(--navy-deeper);padding:5rem 0 4rem;position:relative;overflow:hidden}
+.page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 40%,rgba(232,116,12,.12) 0%,transparent 55%),radial-gradient(ellipse at 10% 60%,rgba(30,33,99,.6) 0%,transparent 50%);pointer-events:none}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.page-hero-c{position:relative;z-index:2}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.85rem}
+.hero-tag::before{content:'';width:14px;height:1.5px;background:var(--accent);display:inline-block}
+.page-hero h1{font-family:var(--fd);font-size:clamp(2rem,5vw,3.4rem);color:var(--white);line-height:1.1;margin-bottom:1.25rem}
+.page-hero-sub{font-size:1.05rem;color:rgba(255,255,255,.62);max-width:58ch;margin-bottom:2rem;line-height:1.75}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.75rem}
+.hero-pills{display:flex;flex-wrap:wrap;gap:.85rem}
+.h-pill{display:flex;align-items:flex-start;gap:.65rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--rmd);padding:.7rem 1rem;min-width:200px;flex:1}
+.h-pill i{color:var(--accent);font-size:.9rem;margin-top:.15rem;flex-shrink:0}
+.h-pill strong{display:block;font-size:.82rem;font-weight:600;color:var(--white);margin-bottom:.15rem}
+.h-pill span{font-size:.76rem;color:rgba(255,255,255,.5);line-height:1.4}
+/* CHALLENGE */
+.challenge{padding:5rem 0;background:var(--white)}
+.chal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+.chal-card{background:var(--mist);border:1px solid var(--border);border-radius:var(--rlg);padding:1.75rem}
+.chal-icon{width:44px;height:44px;background:var(--white);border-radius:var(--rmd);display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:1rem;margin-bottom:1rem;box-shadow:var(--shadow-sm)}
+.chal-card h3{font-family:var(--fd);font-size:1.1rem;color:var(--navy-deeper);margin-bottom:.6rem}
+.chal-card p{font-size:.88rem;color:var(--muted);line-height:1.7}
+/* SERVICES DARK */
+.services-sec{padding:5rem 0;background:var(--navy-deeper);position:relative;overflow:hidden}
+.services-sec-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:72px 72px;pointer-events:none}
+.services-sec-c{position:relative;z-index:2}
+.svc-blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem;margin-top:3rem}
+.svc-block{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:var(--rlg);padding:2rem;transition:border-color var(--tr),background var(--tr)}
+.svc-block:hover{border-color:rgba(232,116,12,.4);background:rgba(255,255,255,.07)}
+.svc-block-head{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1rem}
+.svc-block-icon{width:46px;height:46px;background:rgba(255,255,255,.08);border-radius:var(--rmd);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1rem;flex-shrink:0}
+.svc-block-tag{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
+.svc-block-title{font-family:var(--fd);font-size:1.25rem;color:var(--white);line-height:1.2}
+.svc-block-desc{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:1.25rem}
+.svc-block-feats{display:flex;flex-direction:column;gap:.45rem}
+.svc-block-feats li{display:flex;align-items:center;gap:.55rem;font-size:.83rem;color:rgba(255,255,255,.7)}
+.svc-block-feats li i{color:var(--accent);font-size:.7rem;flex-shrink:0}
+/* WHY */
+.why-sec{padding:5rem 0;background:var(--mist)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.why-items{display:flex;flex-direction:column;gap:2rem}
+.why-item{display:flex;gap:1.25rem;align-items:flex-start}
+.why-num{font-family:var(--fd);font-size:2rem;color:var(--accent);line-height:1;flex-shrink:0;width:40px}
+.why-item h3{font-family:var(--fd);font-size:1.2rem;color:var(--navy-deeper);margin-bottom:.5rem}
+.why-item p{font-size:.9rem;color:var(--muted);line-height:1.75}
+.stats-box{background:var(--navy-deeper);border-radius:var(--rlg);padding:3rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.stat-item{text-align:center}
+.stat-n{display:block;font-family:var(--fd);font-size:2.5rem;color:var(--accent);line-height:1;margin-bottom:.4rem}
+.stat-l{display:block;font-size:.76rem;font-weight:500;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.06em;line-height:1.4}
+/* CTA */
+.cta-sec{background:var(--navy);padding:4.5rem 0}
+.cta-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-h2{font-family:var(--fd);font-size:clamp(1.6rem,3vw,2.2rem);color:var(--white);margin-bottom:.6rem}
+.cta-sub{font-size:1rem;color:rgba(255,255,255,.55);max-width:50ch}
+/* RESPONSIVE */
+@media(max-width:1024px){.why-grid{grid-template-columns:1fr;gap:3rem}}
+@media(max-width:768px){
+  .hero-pills .h-pill{min-width:100%}
+  .svc-blocks{grid-template-columns:1fr}
+  .stats-box{grid-template-columns:1fr 1fr}
+  .cta-inner{flex-direction:column;text-align:center}
+  .cta-inner .btn{width:100%;justify-content:center}
+}
+@media(max-width:480px){.container{padding:0 1.25rem}.page-hero{padding:4rem 0 3rem}}
+
+/* Hero circuit background (shared with homepage) */
+.page-hero-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.page-hero-orb--1{width:600px;height:600px;top:-200px;left:-150px;background:radial-gradient(circle,rgba(30,33,99,.8) 0%,transparent 70%)}
+.page-hero-orb--2{width:500px;height:500px;bottom:-150px;right:-100px;background:radial-gradient(circle,rgba(232,116,12,.15) 0%,transparent 70%)}
+.page-hero-circuit{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+</style>
+</head>
+<body>
+<div id="vesta-header"></div>
+
+<div class="breadcrumb">
+  <div class="container bc-inner">
+    <a href="index.html">Home</a>
+    <span class="bc-sep">/</span>
+    <span class="bc-current">Fire Detection &amp; Prevention</span>
+  </div>
+</div>
+
+<section class="page-hero" id="top">
+  <div class="page-hero-bg" aria-hidden="true"></div>
+  <div class="page-hero-grid" aria-hidden="true"></div>
+  <div class="page-hero-orb page-hero-orb--1" aria-hidden="true"></div>
+  <div class="page-hero-orb page-hero-orb--2" aria-hidden="true"></div>
+  <svg class="page-hero-circuit" aria-hidden="true" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <g stroke="rgba(255,255,255,0.06)" fill="none" stroke-width="1">
+      <path d="M0 150 H200 V80 H400 V150 H600 V200 H900"/><path d="M100 0 V120 H250 V300 H100 V450 H300"/>
+      <path d="M700 0 V100 H550 V250 H700 V380 H900"/><path d="M0 400 H150 V320 H350 V400 H500 V500 H900"/>
+      <circle cx="200" cy="80" r="4" fill="rgba(255,255,255,0.12)"/><circle cx="400" cy="150" r="4" fill="rgba(255,255,255,0.12)"/>
+      <circle cx="550" cy="250" r="4" fill="rgba(255,255,255,0.12)"/><circle cx="350" cy="400" r="4" fill="rgba(255,255,255,0.12)"/>
+      <circle cx="150" cy="320" r="4" fill="rgba(255,255,255,0.12)"/><circle cx="700" cy="100" r="4" fill="rgba(255,255,255,0.12)"/>
+      <circle cx="500" cy="500" r="4" fill="rgba(255,255,255,0.12)"/><circle cx="100" cy="120" r="4" fill="rgba(255,255,255,0.12)"/>
+    </g>
+  </svg>
+  <div class="container page-hero-c">
+    <div class="hero-tag">Fire Detection &amp; Prevention</div>
+    <h1>Fire Systems That Detect Early — and Respond Immediately</h1>
+    <p class="page-hero-sub">Addressable fire detection, alarm and suppression systems engineered to BS 5839 and the specific risk profile of your site. From a single commercial unit to a multi-building estate — Vesta IT delivers life-safety infrastructure that performs when it matters most.</p>
+    <div class="hero-btns">
+      <a href="index.html#contact" class="btn btn--accent">Request a Free Consultation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      <a href="#services" class="btn btn--ghost">Our Services <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></a>
+    </div>
+    <div class="hero-pills"><div class="h-pill"><i class="fa-solid fa-check-circle" aria-hidden="true"></i><div><strong>BS 5839 Compliant</strong><span>Every system designed and installed to the current British Standard for fire detection and alarm systems</span></div></div><div class="h-pill"><i class="fa-solid fa-check-circle" aria-hidden="true"></i><div><strong>Addressable Systems</strong><span>Zone-by-zone precision — know exactly which detector has activated and where, instantly</span></div></div><div class="h-pill"><i class="fa-solid fa-check-circle" aria-hidden="true"></i><div><strong>End-to-End Delivery</strong><span>Design, supply, installation, commissioning, monitoring connection and ongoing maintenance from one team</span></div></div></div>
+  </div>
+</section>
+
+<section class="challenge" id="challenge" aria-labelledby="chal-title">
+  <div class="container">
+    <span class="stag reveal">The Challenge</span>
+    <h2 class="sec-h2 reveal" id="chal-title">Why Fire System Failures Are So Preventable — Yet So Common</h2>
+    <p class="sec-intro reveal">Most fire system failures are not equipment failures — they are design, installation and maintenance failures. Specifying the wrong detector type, inadequate coverage, poor cable management or skipped servicing all create life-safety risk that regulators and insurers will not tolerate.</p>
+    <div class="chal-grid"><div class="chal-card reveal rd1"><div class="chal-icon"><i class="fa-solid fa-fire" aria-hidden="true"></i></div><h3>Wrong Detector for the Environment</h3><p>Ionisation detectors in kitchens. Optical detectors in dusty warehouses. Heat detectors in areas where smoke detectors are essential. Misspecification causes both missed detections and chronic false alarms — neither is acceptable in a life-safety system.</p></div><div class="chal-card reveal rd2"><div class="chal-icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div><h3>Inadequate Coverage Planning</h3><p>A compliant number of detectors on paper does not guarantee compliant coverage in practice. Ceiling height, roof pitch, air movement and obstruction all affect detector placement — and only a proper design survey identifies every gap.</p></div><div class="chal-card reveal rd3"><div class="chal-icon"><i class="fa-solid fa-bell-slash" aria-hidden="true"></i></div><h3>False Alarm Fatigue</h3><p>Systems that generate frequent false alarms quickly lose the confidence of staff and management. When the alarm sounds, people hesitate. That hesitation is the difference between a controlled evacuation and a tragedy.</p></div><div class="chal-card reveal rd1"><div class="chal-icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></div><h3>Maintenance Neglect</h3><p>Fire alarm systems require regular testing and servicing to remain BS 5839 compliant and insurable. A system that has not been serviced is a system whose performance in a real fire is unknown — and unknowable.</p></div></div>
+  </div>
+</section>
+
+<section class="services-sec" id="services" aria-labelledby="svc-title">
+  <div class="services-sec-bg" aria-hidden="true"></div>
+  <div class="container services-sec-c">
+    <span class="stag stag--lt reveal">Our Services</span>
+    <h2 class="sec-h2 sec-h2--lt reveal" id="svc-title">Complete Fire Detection &amp; Prevention, From Design to Maintenance</h2>
+    <p class="sec-intro sec-intro--lt reveal">Vesta IT delivers the full lifecycle of fire system provision — risk-based design, quality installation, professional commissioning and ongoing PPM — so your system remains compliant, effective and insurable throughout its operational life.</p>
+    <div class="svc-blocks"><div class="svc-block reveal"><div class="svc-block-head"><div class="svc-block-icon"><i class="fa-solid fa-fire-extinguisher" aria-hidden="true"></i></div><div><div class="svc-block-tag">Core Service</div><h3 class="svc-block-title">Addressable Fire Detection &amp; Alarm System Design</h3></div></div><p class="svc-block-desc">Site survey and risk-based design of addressable fire detection and alarm systems to BS 5839-1. We specify the right detector type for every zone — smoke, heat, CO, multi-sensor — based on the actual conditions in each area, not a generic layout.</p><ul class="svc-block-feats"><li><i class="fa-solid fa-check" aria-hidden="true"></i>Full BS 5839-1 compliant system design</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Detector type selection matched to environment and risk</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Addressable panel specification with zone mapping</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Cable route planning and containment design</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>As-built documentation and commissioning certificate</li></ul></div><div class="svc-block reveal"><div class="svc-block-head"><div class="svc-block-icon"><i class="fa-solid fa-plug" aria-hidden="true"></i></div><div><div class="svc-block-tag">Installation</div><h3 class="svc-block-title">Professional Installation &amp; Commissioning</h3></div></div><p class="svc-block-desc">Clean, compliant installation by trained engineers using quality-approved equipment throughout. Every system is commissioned to manufacturer specification and BS 5839, with full zone testing before handover — no exceptions.</p><ul class="svc-block-feats"><li><i class="fa-solid fa-check" aria-hidden="true"></i>Installation by qualified fire alarm engineers</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Quality-approved addressable panels and detectors</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Full zone-by-zone activation and fault testing</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Audible and visual alarm device verification</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>System handover with user training and documentation</li></ul></div><div class="svc-block reveal"><div class="svc-block-head"><div class="svc-block-icon"><i class="fa-solid fa-water" aria-hidden="true"></i></div><div><div class="svc-block-tag">Suppression</div><h3 class="svc-block-title">Suppression System Integration</h3></div></div><p class="svc-block-desc">Where a detection-only system is insufficient — server rooms, plant rooms, high-value storage and archival areas — Vesta IT integrates clean agent and CO₂ suppression systems that extinguish fires without water damage to critical equipment or irreplaceable materials.</p><ul class="svc-block-feats"><li><i class="fa-solid fa-check" aria-hidden="true"></i>Clean agent suppression for IT and server environments</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>CO₂ systems for enclosed plant and electrical rooms</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Integration with fire detection panel and alarm</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Pre-discharge warning and abort capability</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Regular discharge testing and agent recharge</li></ul></div><div class="svc-block reveal"><div class="svc-block-head"><div class="svc-block-icon"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></div><div><div class="svc-block-tag">Ongoing Service</div><h3 class="svc-block-title">Planned Preventative Maintenance</h3></div></div><p class="svc-block-desc">Annual and six-monthly servicing programmes keep your fire alarm system BS 5839 compliant, insurer-approved and operationally reliable. Our PPM contracts include priority response for faults and full documentation for your fire safety records.</p><ul class="svc-block-feats"><li><i class="fa-solid fa-check" aria-hidden="true"></i>Six-monthly and annual service visits to BS 5839</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Battery, detector and panel functional testing</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>False alarm cause investigation and remediation</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Priority fault response with agreed SLAs</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Full service records for compliance and insurance</li></ul></div><div class="svc-block reveal"><div class="svc-block-head"><div class="svc-block-icon"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i></div><div><div class="svc-block-tag">Monitoring</div><h3 class="svc-block-title">24/7 Alarm Receiving Centre Monitoring</h3></div></div><p class="svc-block-desc">Connection of your fire alarm panel to an NSI-approved Alarm Receiving Centre ensures immediate fire brigade notification on confirmed activation — even when the building is empty. For commercial premises, this is frequently an insurer requirement.</p><ul class="svc-block-feats"><li><i class="fa-solid fa-check" aria-hidden="true"></i>NSI-approved ARC with 24/7/365 staffed monitoring</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Immediate fire brigade notification on confirmed activation</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Fault signal monitoring with facilities team notification</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Panel test signals confirmed by operators</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Multi-site fire panel management available</li></ul></div></div>
+  </div>
+</section>
+
+<section class="why-sec" aria-labelledby="why-title">
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <span class="stag reveal">Why Vesta</span>
+        <h2 class="sec-h2 reveal" id="why-title">Life Safety Demands More Than a Compliant Certificate</h2>
+        <div class="why-items"><div class="why-item reveal rd1"><div class="why-num">01</div><div><h3>Right System, Right Environment</h3><p>We survey every site before specifying a single device. The detector types, panel size, zone structure and suppression integration are all determined by your specific building, occupancy and risk — not a standard template.</p></div></div><div class="why-item reveal rd2"><div class="why-num">02</div><div><h3>Integrated With Your Security Infrastructure</h3><p>Because Vesta IT also installs and manages CCTV, access control and network infrastructure, your fire system integrates cleanly with your wider security estate — shared monitoring, consistent documentation, single point of contact.</p></div></div><div class="why-item reveal rd3"><div class="why-num">03</div><div><h3>Compliant Records, Always Ready</h3><p>Every installation and every service visit generates the documentation your insurer and fire authority require. Our clients are never caught short at audit or renewal.</p></div></div></div>
+      </div>
+      <div class="stats-box" aria-label="Key statistics"><div class="stat-item"><span class="stat-n">BS 5839</span><span class="stat-l">Compliant Design</span></div><div class="stat-item"><span class="stat-n">NSI</span><span class="stat-l">Approved Monitoring</span></div><div class="stat-item"><span class="stat-n">24/7</span><span class="stat-l">ARC Response</span></div><div class="stat-item"><span class="stat-n">6-Monthly</span><span class="stat-l">PPM Available</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-sec" aria-labelledby="cta-title">
+  <div class="container cta-inner">
+    <div>
+      <h2 class="cta-h2" id="cta-title">Ready to make your fire detection genuinely reliable?</h2>
+      <p class="cta-sub">Start with a free site survey. We'll assess your current system, identify compliance gaps and design a solution built around your specific risk profile.</p>
+    </div>
+    <a href="index.html#contact" class="btn btn--accent btn--large">
+      Start the Conversation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+    </a>
+  </div>
+</section>
+
+<footer id="vesta-footer" role="contentinfo"></footer>
+</body>
+</html>

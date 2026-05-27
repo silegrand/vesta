@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Maintenance &amp; Support | Vesta IT Services Ltd</title>
+<meta name="description" content="Planned preventative maintenance and rapid response support for CCTV, access control and wireless systems. Keep your security infrastructure performing at full effectiveness with Vesta IT's managed maintenance service."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
+  <script src="vesta.js" defer></script>
+<style>
+
+:root{
+  --navy:#1E2163;--navy-dark:#141548;--navy-deeper:#0D0E30;
+  --accent:#E8740C;--accent-lt:#F4974A;
+  --steel:#4A5568;--mist:#F4F6FB;--white:#fff;--border:#DDE2EE;
+  --text:#2D3748;--muted:#64748B;
+  --rsm:6px;--rmd:12px;--rlg:20px;
+  --shadow-sm:0 1px 4px rgba(30,33,99,.08);
+  --shadow-md:0 4px 20px rgba(30,33,99,.12);
+  --shadow-lg:0 12px 40px rgba(30,33,99,.16);
+  --tr:.25s cubic-bezier(.4,0,.2,1);
+  --fd:'DM Sans',system-ui,sans-serif;
+  --fb:'DM Sans',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--fb);color:var(--text);background:var(--white);line-height:1.7;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-style:none}address{font-style:normal}
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 2rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.75rem;border-radius:var(--rsm);font-family:var(--fb);font-size:.95rem;font-weight:600;cursor:pointer;border:2px solid transparent;transition:var(--tr);white-space:nowrap}
+.btn i{transition:transform var(--tr)}.btn:hover i{transform:translateX(3px)}
+.btn--primary{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.btn--primary:hover{background:var(--navy-dark);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn--accent{background:var(--accent);color:var(--white);border-color:var(--accent)}
+.btn--accent:hover{background:var(--accent-lt);transform:translateY(-1px);box-shadow:0 6px 24px rgba(232,116,12,.35)}
+.btn--ghost{background:transparent;color:var(--white);border-color:rgba(255,255,255,.4)}
+.btn--ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}
+.btn--large{padding:1.1rem 2.25rem;font-size:1.05rem}.btn--full{width:100%;justify-content:center}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}
+
+.stag{display:inline-block;font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}
+.stag--lt{color:rgba(255,255,255,.55)}
+.sec-h2{font-family:var(--fd);font-size:clamp(1.8rem,3.5vw,2.5rem);color:var(--navy-deeper);margin-bottom:1.25rem;line-height:1.15}
+.sec-h2--lt{color:var(--white)}
+.sec-intro{font-size:1rem;color:var(--muted);max-width:64ch;line-height:1.8;margin-bottom:3rem}
+.sec-intro--lt{color:rgba(255,255,255,.52)}
+/* BREADCRUMB */
+.breadcrumb{background:var(--navy-deeper);padding:.55rem 0}
+.bc-inner{display:flex;align-items:center;gap:.5rem;font-size:.76rem;color:rgba(255,255,255,.42)}
+.bc-inner a{color:rgba(255,255,255,.45);transition:color .2s}.bc-inner a:hover{color:var(--accent)}
+.bc-sep{color:rgba(255,255,255,.2)}.bc-current{color:rgba(255,255,255,.72)}
+/* PAGE HERO */
+.page-hero{background:var(--navy-deeper);padding:5rem 0 4rem;position:relative;overflow:hidden}
+.page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 40%,rgba(232,116,12,.12) 0%,transparent 55%),radial-gradient(ellipse at 10% 60%,rgba(30,33,99,.6) 0%,transparent 50%);pointer-events:none}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.page-hero-c{position:relative;z-index:2}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.85rem}
+.hero-tag::before{content:'';width:14px;height:1.5px;background:var(--accent);display:inline-block}
+.page-hero h1{font-family:var(--fd);font-size:clamp(2rem,5vw,3.4rem);color:var(--white);line-height:1.1;margin-bottom:1.25rem}
+.page-hero-sub{font-size:1.05rem;color:rgba(255,255,255,.62);max-width:58ch;margin-bottom:2rem;line-height:1.75}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.75rem}
+.hero-pills{display:flex;flex-wrap:wrap;gap:.85rem}
+.h-pill{display:flex;align-items:flex-start;gap:.65rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--rmd);padding:.7rem 1rem;min-width:200px;flex:1}
+.h-pill i{color:var(--accent);font-size:.9rem;margin-top:.15rem;flex-shrink:0}
+.h-pill strong{display:block;font-size:.82rem;font-weight:600;color:var(--white);margin-bottom:.15rem}
+.h-pill span{font-size:.76rem;color:rgba(255,255,255,.5);line-height:1.4}
+/* CHALLENGE */
+.challenge{padding:5rem 0;background:var(--white)}
+.chal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+.chal-card{background:var(--mist);border:1px solid var(--border);border-radius:var(--rlg);padding:1.75rem}
+.chal-icon{width:44px;height:44px;background:var(--white);border-radius:var(--rmd);display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:1rem;margin-bottom:1rem;box-shadow:var(--shadow-sm)}
+.chal-card h3{font-family:var(--fd);font-size:1.1rem;color:var(--navy-deeper);margin-bottom:.6rem}
+.chal-card p{font-size:.88rem;color:var(--muted);line-height:1.7}
+/* SERVICES DARK */
+.services-sec{padding:5rem 0;background:var(--navy-deeper);position:relative;overflow:hidden}
+.services-sec-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:72px 72px;pointer-events:none}
+.services-sec-c{position:relative;z-index:2}
+.svc-blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem;margin-top:3rem}
+.svc-block{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:var(--rlg);padding:2rem;transition:border-color var(--tr),background var(--tr)}
+.svc-block:hover{border-color:rgba(232,116,12,.4);background:rgba(255,255,255,.07)}
+.svc-block-head{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1rem}
+.svc-block-icon{width:46px;height:46px;background:rgba(255,255,255,.08);border-radius:var(--rmd);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1rem;flex-shrink:0}
+.svc-block-tag{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
+.svc-block-title{font-family:var(--fd);font-size:1.25rem;color:var(--white);line-height:1.2}
+.svc-block-desc{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:1.25rem}
+.svc-block-feats{display:flex;flex-direction:column;gap:.45rem}
+.svc-block-feats li{display:flex;align-items:center;gap:.55rem;font-size:.83rem;color:rgba(255,255,255,.7)}
+.svc-block-feats li i{color:var(--accent);font-size:.7rem;flex-shrink:0}
+/* WHY */
+.why-sec{padding:5rem 0;background:var(--mist)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.why-items{display:flex;flex-direction:column;gap:2rem}
+.why-item{display:flex;gap:1.25rem;align-items:flex-start}
+.why-num{font-family:var(--fd);font-size:2rem;color:var(--accent);line-height:1;flex-shrink:0;width:40px}
+.why-item h3{font-family:var(--fd);font-size:1.2rem;color:var(--navy-deeper);margin-bottom:.5rem}
+.why-item p{font-size:.9rem;color:var(--muted);line-height:1.75}
+.stats-box{background:var(--navy-deeper);border-radius:var(--rlg);padding:3rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.stat-item{text-align:center}
+.stat-n{display:block;font-family:var(--fd);font-size:2.5rem;color:var(--accent);line-height:1;margin-bottom:.4rem}
+.stat-l{display:block;font-size:.76rem;font-weight:500;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.06em;line-height:1.4}
+/* CTA */
+.cta-sec{background:var(--navy);padding:4.5rem 0}
+.cta-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cta-h2{font-family:var(--fd);font-size:clamp(1.6rem,3vw,2.2rem);color:var(--white);margin-bottom:.6rem}
+.cta-sub{font-size:1rem;color:rgba(255,255,255,.55);max-width:50ch}
+/* RESPONSIVE */
+@media(max-width:1024px){.why-grid{grid-template-columns:1fr;gap:3rem}}
+@media(max-width:768px){
+  .hero-pills .h-pill{min-width:100%}
+  .svc-blocks{grid-template-columns:1fr}
+  .stats-box{grid-template-columns:1fr 1fr}
+  .cta-inner{flex-direction:column;text-align:center}
+  .cta-inner .btn{width:100%;justify-content:center}
+}
+@media(max-width:480px){.container{padding:0 1.25rem}.page-hero{padding:4rem 0 3rem}}
+
+/* Hero circuit background (shared with homepage) */
+.page-hero-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.page-hero-orb--1{width:600px;height:600px;top:-200px;left:-150px;background:radial-gradient(circle,rgba(30,33,99,.8) 0%,transparent 70%)}
+.page-hero-orb--2{width:500px;height:500px;bottom:-150px;right:-100px;background:radial-gradient(circle,rgba(232,116,12,.15) 0%,transparent 70%)}
+.page-hero-circuit{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+</style>
+</head>
+<body>
+<div id="vesta-header"></div>
+
+<div class="breadcrumb">
+  <div class="container bc-inner">
+    <a href="index.html">Home</a>
+    <span class="bc-sep">/</span>
+    <span class="bc-current">Maintenance &amp; Support</span>
+  </div>
+</div>
+
+<section class="page-hero" id="top">
+  <div class="page-hero-bg" aria-hidden="true"></div>
+  <div class="page-hero-grid" aria-hidden="true"></div>
+  <div class="page-hero-orb page-hero-orb--1" aria-hidden="true"></div>
+  <div class="page-hero-orb page-hero-orb--2" aria-hidden="true"></div>
+  <svg class="page-hero-circuit" aria-hidden="true" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <g stroke="rgba(255,255,255,0.06)" fill="none" stroke-width="1">
+      <path d="M0 150 H200 V80 H400 V150 H600 V200 H900"/><path d="M100 0 V120 H250 V300 H100 V450 H300"/>
+      <path d="M700 0 V100 H550 V250 H700 V380 H900"/><path d="M0 400 H150 V320 H350 V400 H500 V500 H900"/>
+      <circle cx="200" cy="80" r="4" fill="rgba(255,255,255,0.12)"/><circle cx="400" cy="150" r="4" fill="rgba(255,255,255,0.12)"/>
+      <circle cx="550" cy="250" r="4" fill="rgba(255,255,255,0.12)"/><circle cx="350" cy="400" r="4" fill="rgba(255,255,255,0.12)"/>
+      <circle cx="150" cy="320" r="4" fill="rgba(255,255,255,0.12)"/><circle cx="700" cy="100" r="4" fill="rgba(255,255,255,0.12)"/>
+      <circle cx="500" cy="500" r="4" fill="rgba(255,255,255,0.12)"/><circle cx="100" cy="120" r="4" fill="rgba(255,255,255,0.12)"/>
+    </g>
+  </svg>
+  <div class="container page-hero-c">
+    <div class="hero-tag">Maintenance &amp; Support</div>
+    <h1>Security Infrastructure That Stays Operational — Not Just Installed</h1>
+    <p class="page-hero-sub">Planned preventative maintenance and responsive support contracts for CCTV, access control and wireless network systems. One team, covering every discipline, keeping everything working — because security infrastructure that fails at the wrong moment is no security at all.</p>
+    <div class="hero-btns">
+      <a href="index.html#contact" class="btn btn--accent">Request a Free Consultation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      <a href="#services" class="btn btn--ghost">Our Services <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></a>
+    </div>
+    <div class="hero-pills"><div class="h-pill"><i class="fa-solid fa-check-circle" aria-hidden="true"></i><div><strong>CCTV Maintenance</strong><span>Camera systems, NVRs, storage and remote access — serviced, tested and certified to keep your surveillance fully operational</span></div></div><div class="h-pill"><i class="fa-solid fa-check-circle" aria-hidden="true"></i><div><strong>Access Control</strong><span>Door controllers, readers, electric strikes and intercoms maintained to ensure access is always controlled exactly as intended</span></div></div><div class="h-pill"><i class="fa-solid fa-check-circle" aria-hidden="true"></i><div><strong>Wireless &amp; Fixed Networks</strong><span>Access points, switches, cabling and connectivity infrastructure kept at full performance with proactive monitoring and rapid response</span></div></div></div>
+  </div>
+</section>
+
+<section class="challenge" id="challenge" aria-labelledby="chal-title">
+  <div class="container">
+    <span class="stag reveal">The Challenge</span>
+    <h2 class="sec-h2 reveal" id="chal-title">Why Security Systems Fail — and Why Maintenance Prevents It</h2>
+    <p class="sec-intro reveal">Security infrastructure that is installed and forgotten is security infrastructure that will eventually fail. Cameras drift out of focus. Hard drives fill up silently. Access card readers fail intermittently. Wireless access points drop into legacy modes. None of these failures announce themselves — they are discovered only when the system is needed most.</p>
+    <div class="chal-grid"><div class="chal-card reveal rd1"><div class="chal-icon"><i class="fa-solid fa-camera" aria-hidden="true"></i></div><h3>CCTV Systems Degrade Silently</h3><p>Lens contamination, camera misalignment, NVR storage failures and firmware vulnerabilities all develop gradually. Without regular inspection and testing, a CCTV system that appears to be working may be recording nothing useful — and you will not know until an incident investigation reveals the gap.</p></div><div class="chal-card reveal rd2"><div class="chal-icon"><i class="fa-solid fa-door-open" aria-hidden="true"></i></div><h3>Access Control Failures Create Security Vulnerabilities</h3><p>A door controller that fails open is a security breach. A reader that intermittently fails triggers repeated calls to helpdesks and workarounds that undermine the entire access policy. Regular testing and firmware management prevent both.</p></div><div class="chal-card reveal rd3"><div class="chal-icon"><i class="fa-solid fa-wifi" aria-hidden="true"></i></div><h3>Wireless Networks Drift Over Time</h3><p>RF environments change as buildings and equipment change. Access points that provided excellent coverage at installation can develop coverage gaps as interference sources are introduced. Without proactive monitoring and periodic surveys, wireless degradation goes unnoticed until productivity suffers.</p></div><div class="chal-card reveal rd1"><div class="chal-icon"><i class="fa-solid fa-clock" aria-hidden="true"></i></div><h3>Reactive Support Is Always More Expensive</h3><p>Waiting for systems to fail before calling an engineer means longer downtime, higher call-out costs and the possibility of a security gap during the repair window. A PPM contract with priority response turns reactive emergencies into managed, predictable costs.</p></div></div>
+  </div>
+</section>
+
+<section class="services-sec" id="services" aria-labelledby="svc-title">
+  <div class="services-sec-bg" aria-hidden="true"></div>
+  <div class="container services-sec-c">
+    <span class="stag stag--lt reveal">Our Services</span>
+    <h2 class="sec-h2 sec-h2--lt reveal" id="svc-title">Maintenance Across Every System Vesta IT Installs</h2>
+    <p class="sec-intro sec-intro--lt reveal">Our maintenance programmes cover the full range of security and network infrastructure disciplines — CCTV, access control, intercoms and wireless networks. All under a single contract, all supported by a single team that knows every system it maintains.</p>
+    <div class="svc-blocks"><div class="svc-block reveal"><div class="svc-block-head"><div class="svc-block-icon"><i class="fa-solid fa-camera" aria-hidden="true"></i></div><div><div class="svc-block-tag">CCTV Systems</div><h3 class="svc-block-title">CCTV Planned Preventative Maintenance</h3></div></div><p class="svc-block-desc">Regular inspection and testing of all camera systems, NVRs, storage arrays, remote access infrastructure and alarm integrations. Every PPM visit confirms that every camera is recording, every lens is clean and every storage device has sufficient capacity with adequate retention period remaining.</p><ul class="svc-block-feats"><li><i class="fa-solid fa-check" aria-hidden="true"></i>Camera alignment, focus and cleanliness check</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>NVR storage health and retention period verification</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Remote access and VPN connectivity test</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Firmware and security patch review</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Alarm output and integration testing</li></ul></div><div class="svc-block reveal"><div class="svc-block-head"><div class="svc-block-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div><div><div class="svc-block-tag">Access Control</div><h3 class="svc-block-title">Access Control System Maintenance</h3></div></div><p class="svc-block-desc">Testing and servicing of all access control panels, door readers, electric strikes, magnetic locks, REX devices and intercoms. We verify that every door behaves exactly as your access policy requires — and that audit logs are being captured correctly throughout.</p><ul class="svc-block-feats"><li><i class="fa-solid fa-check" aria-hidden="true"></i>Panel, reader and credential system functional testing</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Electric lock and strike force and alignment check</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>REX device and door-closed sensor verification</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Intercom audio and video quality inspection</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Access log audit and firmware update</li></ul></div><div class="svc-block reveal"><div class="svc-block-head"><div class="svc-block-icon"><i class="fa-solid fa-wifi" aria-hidden="true"></i></div><div><div class="svc-block-tag">Wireless Networks</div><h3 class="svc-block-title">Wireless Network Health &amp; Performance Maintenance</h3></div></div><p class="svc-block-desc">Periodic site surveys, access point health checks, controller configuration review and connectivity testing across your wireless estate. We identify coverage gaps, channel conflicts and performance regressions before they become complaints — and resolve them before your next PPM visit.</p><ul class="svc-block-feats"><li><i class="fa-solid fa-check" aria-hidden="true"></i>Access point health and connection status check</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Channel utilisation and interference assessment</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Controller firmware and configuration review</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Coverage spot-testing against original survey</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>WAN and uplink performance verification</li></ul></div><div class="svc-block reveal"><div class="svc-block-head"><div class="svc-block-icon"><i class="fa-solid fa-network-wired" aria-hidden="true"></i></div><div><div class="svc-block-tag">Fixed Networks</div><h3 class="svc-block-title">Fixed Network Infrastructure Maintenance</h3></div></div><p class="svc-block-desc">Physical layer inspection of structured cabling, patch panels, switches and server room or comms cabinet environments. Clean, correctly labelled and correctly terminated infrastructure performs better and faults faster — our maintenance visits keep your physical layer as it should be.</p><ul class="svc-block-feats"><li><i class="fa-solid fa-check" aria-hidden="true"></i>Cable management and labelling inspection</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Patch panel and port connectivity verification</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Switch health, log review and firmware check</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Cabinet environment and power check</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Documentation update for any changes found</li></ul></div><div class="svc-block reveal"><div class="svc-block-head"><div class="svc-block-icon"><i class="fa-solid fa-headset" aria-hidden="true"></i></div><div><div class="svc-block-tag">Rapid Response</div><h3 class="svc-block-title">Priority Fault Response</h3></div></div><p class="svc-block-desc">All Vesta IT maintenance contracts include priority response for system faults between scheduled PPM visits. Our engineers are familiar with every system they maintain — there is no diagnostic delay because an unfamiliar contractor has to learn your infrastructure before they can fix it.</p><ul class="svc-block-feats"><li><i class="fa-solid fa-check" aria-hidden="true"></i>Priority response SLA for contracted clients</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Same engineers who installed and maintain your systems</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Remote diagnostic capability to reduce response time</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Temporary mitigation measures where available</li><li><i class="fa-solid fa-check" aria-hidden="true"></i>Fault cause report and repeat prevention advice</li></ul></div></div>
+  </div>
+</section>
+
+<section class="why-sec" aria-labelledby="why-title">
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <span class="stag reveal">Why Vesta</span>
+        <h2 class="sec-h2 reveal" id="why-title">One Maintenance Partner Across Every System</h2>
+        <div class="why-items"><div class="why-item reveal rd1"><div class="why-num">01</div><div><h3>Know Your Systems Before a Fault Occurs</h3><p>Our engineers maintain the systems they have installed. They know the panel configuration, the cable routes, the access policy structure and the NVR storage layout. When a fault occurs, there is no learning curve — just a resolution.</p></div></div><div class="why-item reveal rd2"><div class="why-num">02</div><div><h3>Predictable Costs, No Surprises</h3><p>A PPM contract with Vesta IT converts unpredictable reactive call-out costs into a fixed, budgetable annual fee. Priority response is included — so when something does go wrong, the cost is already covered.</p></div></div><div class="why-item reveal rd3"><div class="why-num">03</div><div><h3>Compliance Documentation Kept Current</h3><p>CCTV data retention records, access control audit logs, fire system service certificates — all maintained and available for inspection. We keep the paperwork as current as the systems it covers.</p></div></div></div>
+      </div>
+      <div class="stats-box" aria-label="Key statistics"><div class="stat-item"><span class="stat-n">Annual</span><span class="stat-l">PPM Scheduling</span></div><div class="stat-item"><span class="stat-n">Priority</span><span class="stat-l">Fault Response</span></div><div class="stat-item"><span class="stat-n">Single</span><span class="stat-l">Point of Contact</span></div><div class="stat-item"><span class="stat-n">100%</span><span class="stat-l">Systems Documented</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-sec" aria-labelledby="cta-title">
+  <div class="container cta-inner">
+    <div>
+      <h2 class="cta-h2" id="cta-title">Ready to put your security infrastructure on a proper maintenance schedule?</h2>
+      <p class="cta-sub">Get in touch to discuss a maintenance contract covering your existing systems, or combine maintenance from day one with a new Vesta IT installation.</p>
+    </div>
+    <a href="index.html#contact" class="btn btn--accent btn--large">
+      Start the Conversation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+    </a>
+  </div>
+</section>
+
+<footer id="vesta-footer" role="contentinfo"></footer>
+</body>
+</html>
