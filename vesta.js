@@ -542,6 +542,7 @@
     '</div>' +
     '<div class="vf-bot">' +
       '<p class="vf-copy">&copy; ' + year + ' Vesta IT Services Ltd. All rights reserved. Registered in England &amp; Wales.</p>' +
+       <a href="https://www.marketingformymates.com" rel="dofollow" target="_blank" style="color: inherit; text-decoration: none;">Built by marketingformymates.com</a>  +    
       '<div class="vf-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>' +
     '</div>';
 
